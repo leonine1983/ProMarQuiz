@@ -1,18 +1,10 @@
-/* 
-
-Stacked Template
-
-http://www.templatemo.com/tm-505-stacked
-
-*/
 
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto', sans-serif !important;
 }
 
 p {
 	font-size: 13px;
-	line-height: 26px;
 }
 
 a {
@@ -64,6 +56,7 @@ ul {
 
 .nav {
   position: fixed;
+  
   z-index: 1;
   top: 0;
   left: 0;
@@ -82,6 +75,7 @@ ul {
           transform: translate(0, -100%);
   -webkit-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 .nav__list--active {
   -webkit-transform: translate(0, 0);
@@ -110,12 +104,13 @@ ul {
   left: 0;
   text-decoration: none;
   font-size: 24px;
-  background: #3e4e62;
+  
+  background-color:rgb(148, 143, 143); /*  #ce20cb;   Cor do menu interno lateral esquerdo*/
   -webkit-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .nav__link:hover {
-  background: #fa5252;
+  background: #6e6d6e;
 }
 @media (max-width: 640px) {
   .nav {
@@ -139,7 +134,7 @@ ul {
       -ms-flex-align: center;
           align-items: center;
   z-index: 2;
-  background: #455871;
+  background: #eb08f3;
   cursor: pointer;
   -webkit-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -241,7 +236,6 @@ ul {
 }
 .panel__block {
   height: 3px;
-  background: rgba(0, 0, 0, 0.2);
   margin: 0 0 25px 0;
 }
 
@@ -295,17 +289,19 @@ ul {
 
 .home-content {
 	height: 90vh;
-	background-color: rgba(45, 58, 75, 0.5);
+	background-color: #ce20cb;/*Cor da area do titulo Mares*/
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	padding: 0px 60px;
+  border-radius: 1rem;
 	position: relative;
-	margin: 10vh auto 0 auto;
+	margin: 1vh auto 0 auto;
 }
 
 .home-content h1 {
 	padding-top: 120px;
 	font-size: 32px;
 	text-transform: uppercase;
-	color: #fff;
+	color: #ffffff;
 	font-weight: 300;
 }
 
@@ -318,23 +314,24 @@ ul {
 
 .home-content .home-box-content {
   margin-top: 45px;
-	background-color: #455871;
+	background-color: #fcf8fc; /*Cor da area do form*/
 	position: relative;
 	right: -100px;
 	padding: 30px;
 	display: inline-block;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .home-content .left-text {     
 	float: left;     
-	width: 60%; 
 }
 
 .home-content .left-text h4 {
 	display: inline-block;
 	padding-bottom: 5px;
 	font-size: 22px;
-	color: #fff;
+  color: #420525;
 	font-weight: 400;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -349,7 +346,7 @@ ul {
 }
 
 .home-content .left-text p {
-	color: #fff;
+  color: #420525;
 	margin-bottom: 25px;
 }
 

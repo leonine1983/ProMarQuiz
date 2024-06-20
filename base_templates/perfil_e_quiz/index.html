@@ -17,7 +17,7 @@
 
         <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
     </head>
-    <body>
+    <body>      
         <nav class="nav">
           <div class="burger">
             <div class="burger__patty"></div>
@@ -25,7 +25,7 @@
 
           <ul class="nav__list">
             <li class="nav__item">
-              <a href="#1" class="nav__link c-blue"><img src="img/home-icon.png" alt=""></a>
+              <a href="{% url 'criar_perfil_visitante' %}" class="nav__link c-blue"><img src="{% static 'img/home-icon.png' %}" alt=""></a>
             </li>
             <li class="nav__item">
               <a href="#2" class="nav__link c-yellow scrolly"><img src="img/about-icon.png" alt=""></a>

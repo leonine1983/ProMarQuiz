@@ -19,7 +19,7 @@
 .form-win11 select {
     width: 100%;
     padding: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 0 !important;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
@@ -29,7 +29,7 @@
 .form-win11 label {
     font-weight: bold;
     margin-bottom: 5px;
-    display: block;    
+    display: block;
     color: darkslategrey !important;
 }
 
@@ -51,4 +51,22 @@
 .form-win11 button[type="submit"]:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.5);
+}
+
+/* Estilo dos botões de rádio */
+.form-win11 input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Estilo dos textos em negrito para as questões */
+.form-win11 b {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+    color: #333;
+}
+
+/* Estilo dos contêineres das questões */
+.form-win11 .question-container {
+    margin-bottom: 20px;
 }

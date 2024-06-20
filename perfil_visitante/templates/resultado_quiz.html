@@ -1,10 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Resultado do Quiz - ProMar Quiz</title>
-</head>
-<body>
-    <h1>Resultado do Quiz</h1>
-    <p>Implemente aqui a lógica para exibir o resultado do quiz.</p>
-</body>
-</html>
+
+{% extends "perfil_e_quiz/index.html" %}
+{% load static %}
+{% block content %}    
+    <section class="panel " id="1"  style="background: url('{% static 'areia.jpg' %}'); background-repeat: repeat;">
+        <article class="panel__wrapper">
+          <div class="panel__content">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <div class="home-content">
+                    <div class="home-heading">                        
+                      <h1><em>Mares</em> Quiz</h1>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="home-box-content">
+                          <div class="left-text">
+                            
+                            <h4><strong>Resultado do Quiz</strong></h4>
+                            <p>Implemente aqui a lógica para exibir o resultado do quiz.</p></p>  
+                            <div class="primary-button">
+                              
+                            </div>
+                          </div>
+                          <div class="right-image">
+                            <img src="img/right-home-image.png" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+    </section>
+{% endblock %}
+    

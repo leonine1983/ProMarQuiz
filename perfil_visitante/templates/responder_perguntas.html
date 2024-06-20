@@ -1,26 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Responder Perguntas - ProMar Quiz</title>
-</head>
-<body>
-    <h1>Responder Perguntas</h1>
-    <h3>Perfil de Visitante: {{ perfil_visitante.nome_completo }}</h3>
-    <form method="post">
-        {% csrf_token %}
-        {% for pergunta in perguntas %}
-            <p>{{ pergunta.texto_pergunta }}</p>
-            {% for resposta in respostas %}
-                {% if resposta.pergunta_id == pergunta.id %}
-                    <label>
-                        <input type="radio" name="resposta_{{ pergunta.id }}" value="{{ resposta.id }}">
-                        {{ resposta.texto_resposta }}
-                    </label><br>
-                {% endif %}
-            {% endfor %}
-            <br>
-        {% endfor %}
-        <button type="submit">Enviar Respostas</button>
-    </form>
-</body>
-</html>
+{% extends "perfil_e_quiz/index.html" %}
+{% load static %}
+{% block content %}    
+    <section class="panel " id="1"  style="background: url('{% static 'areia.jpg' %}'); background-repeat: repeat;">
+        <article class="panel__wrapper">
+          <div class="panel__content">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <div class="home-content">
+                    <div class="home-heading">                        
+                      <h1><em>Mares</em> Quiz</h1>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="home-box-content">
+                          <div class="left-text">
+                            
+                            <h4><strong>{{ perfil_visitante.nome_completo }}</strong>, Mostre o quanto você aprendeu sobre o <em>PROMAR!</em>!</h4>
+                            <p>Veja se você consegue acertar todas as perguntas e mostre que você é um verdadeiro expert no assunto.</p>
+                            <p> Aventure-se neste desafio e compartilhe seus resultados com seus amigos!</p>    
+                            <form method="post" class='form-win11'>
+                                {% csrf_token %}
+                                {% for pergunta in perguntas %}
+                                    <div>
+                                   <b>Questão 0{{forloop.counter}} -</b> {{ pergunta.texto_pergunta }}:
+                                    {% for resposta in respostas %}                                    
+                                        {% if resposta.pergunta_id == pergunta.id %}
+                                            <label style='margin-left:2rem'>
+                                                <input type="radio" name="resposta_{{ pergunta.id }}" value="{{ resposta.id }}">
+                                                {{ resposta.texto_resposta }}
+                                            </label>                                            
+                                        {% endif %}                                        
+                                    {% endfor %}
+                                    </div> 
+                                {% endfor %}
+                                <button type="submit">Enviar Respostas</button>
+                            </form>
+                            
+                            <div class="primary-button">
+                              
+                            </div>
+                          </div>
+                          <div class="right-image">
+                            <img src="img/right-home-image.png" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+    </section>
+{% endblock %}
+    

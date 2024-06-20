@@ -1,6 +1,7 @@
 {% extends "perfil_e_quiz/index.html" %}
+{% load static %}
 {% block content %}    
-    <section class="panel b-blue" id="1">
+    <section class="panel " id="1"  style="background: url('{% static 'areia.jpg' %}'); background-repeat: repeat;">
         <article class="panel__wrapper">
           <div class="panel__content">
             <div class="container">
@@ -20,7 +21,7 @@
                             <p>Equipe ProMar</p>
                             <form method="post" class='form-win11'>
                                 {% csrf_token %}
-                                {{ form.as_p }}
+                                {{ form.as_div }}
                                 <button type="submit">Enviar</button>
                             </form>
                                                     
