@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório Completo - ProMar Quiz</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relatório Completo - ProMar Quiz</h1>
+
+    <h2>Geral</h2>
+    <table>
+        <tr>
+            <th>Total de Visitantes</th>
+            <td>{{ total_visitantes }}</td>
+        </tr>
+        <tr>
+            <th>Total de Acertos</th>
+            <td>{{ total_acertos }}</td>
+        </tr>
+        <tr>
+            <th>Total de Erros</th>
+            <td>{{ total_erros }}</td>
+        </tr>
+    </table>
+
+    <h2>Respostas Mais Acertadas</h2>
+    <table>
+        <tr>
+            <th>Resposta</th>
+            <th>Total de Acertos</th>
+        </tr>
+        {% for resposta in respostas_acertadas %}
+        <tr>
+            <td>{{ resposta.resposta__texto_resposta }}</td>
+            <td>{{ resposta.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Cidades com Melhor Desempenho</h2>
+    <table>
+        <tr>
+            <th>Cidade</th>
+            <th>Total de Acertos</th>
+        </tr>
+        {% for cidade in cidades_acertos %}
+        <tr>
+            <td>{{ cidade.municipio_escola }}</td>
+            <td>{{ cidade.total_acertos }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Notas Mais Dadas</h2>
+    <table>
+        <tr>
+            <th>Nota</th>
+            <th>Total</th>
+        </tr>
+        {% for nota in notas_mais_dadas %}
+        <tr>
+            <td>{{ nota.nota_visita }}</td>
+            <td>{{ nota.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Idades Mais Visitadas</h2>
+    <table>
+        <tr>
+            <th>Idade</th>
+            <th>Total</th>
+        </tr>
+        {% for idade in idades_mais_visitadas %}
+        <tr>
+            <td>{{ idade.idade }}</td>
+            <td>{{ idade.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <p><a href="?export=excel">Exportar para Excel</a></p>
+</body>
+</html>

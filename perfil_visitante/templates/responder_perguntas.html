@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Responder Perguntas - ProMar Quiz</title>
+</head>
+<body>
+    <h1>Responder Perguntas</h1>
+    <h3>Perfil de Visitante: {{ perfil_visitante.nome_completo }}</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% for pergunta in perguntas %}
+            <p>{{ pergunta.texto_pergunta }}</p>
+            {% for resposta in respostas %}
+                {% if resposta.pergunta_id == pergunta.id %}
+                    <label>
+                        <input type="radio" name="resposta_{{ pergunta.id }}" value="{{ resposta.id }}">
+                        {{ resposta.texto_resposta }}
+                    </label><br>
+                {% endif %}
+            {% endfor %}
+            <br>
+        {% endfor %}
+        <button type="submit">Enviar Respostas</button>
+    </form>
+</body>
+</html>
