@@ -1,0 +1,54 @@
+.form-win11 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Estilo das colunas do formulário */
+.form-win11 .form-column {
+    padding: 10px;
+}
+
+/* Estilo dos campos de entrada e seleção */
+.form-win11 input[type="text"],
+.form-win11 select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Estilo dos rótulos */
+.form-win11 label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;    
+    color: darkslategrey !important;
+}
+
+/* Estilo do botão de enviar */
+.form-win11 button[type="submit"] {
+    background-color: #0078d7;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-win11 button[type="submit"]:hover {
+    background-color: #005ea2;
+}
+
+.form-win11 button[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.5);
+}
