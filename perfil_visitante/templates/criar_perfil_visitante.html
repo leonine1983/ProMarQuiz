@@ -1,18 +1,21 @@
 {% extends "perfil_e_quiz/index.html" %}
 {% load static %}
 {% block content %}    
-    <section class="panel " id="1"  style="background: url('{% static 'areia.jpg' %}'); background-repeat: repeat;">
+    <section class="panel " id="1"  style="background: url('{% static 'areia.jpg' %}') repeat;">
         <article class="panel__wrapper">
           <div class="panel__content">
             <div class="container">
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                  <div class="home-content">
-                    <div class="home-heading">                        
-                      <h1><em>Mares</em> Quiz</h1>
-                    </div>
-                    <div class="row">
+                  <div class="home-content" style="padding-left: 0;">
+                    <img src="{% static 'praia.gif' %}" alt="" style="position: absolute; height: 100%;z-index: 0; border-top-left-radius: 1rem;border-bottom-left-radius: 1rem;
+                    ">
+                    <div class="row">                      
                       <div class="col-md-12">
+                        <div class="home-heading" style="padding-left: 25%; margin-top: -5rem;">                        
+                          <h1><em>Mares</em> Quiz</h1>
+                        </div>
+
                         <div class="home-box-content">
                           <div class="left-text">
                             

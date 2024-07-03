@@ -1,7 +1,59 @@
 
 {% extends "perfil_e_quiz/index.html" %}
 {% load static %}
-{% block content %}    
+{% block content %}  
+<style>
+  #respostaVisitante {
+  list-style-position: inside;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+}
+
+#respostaVisitante li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+#respostaVisitante li b {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+#respostaVisitante li p {
+  margin-left: auto;
+  font-size: 14px;
+}
+
+#respostaVisitante li.correta {
+  background-color: #0078d4;
+  color: #fff;
+}
+
+#respostaVisitante li.incorreta {
+  background-color: #d40000;
+  color: #fff;
+}
+
+#respostaVisitante li span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+}
+
+#respostaVisitante li span i {
+  font-size: 18px;
+}
+
+</style>  
     <section class="panel " id="1"  style="background: url('{% static 'areia.jpg' %}'); background-repeat: repeat;">
         <article class="panel__wrapper">
           <div class="panel__content">
@@ -9,16 +61,33 @@
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                   <div class="home-content">
-                    <div class="home-heading">                        
-                      <h1><em>Mares</em> Quiz</h1>
-                    </div>
+                    
+                    <img src="{% static 'praia_noite.gif' %}" alt="" style="position: absolute; height: 100%;z-index: 0; border-top-left-radius: 1rem;border-bottom-left-radius: 1rem;margin-left:-6rem
+                    ">
+                    <div class="row">                      
+                      <div class="col-md-12">
+                        <div class="home-heading" style="padding-left: 20%; margin-top: -5rem;">                        
+                          <h1><em>Mares</em> Quiz</h1>
+                        </div>
+
                     <div class="row">
                       <div class="col-md-12">
                         <div class="home-box-content">
                           <div class="left-text">
                             
-                            <h4><strong>Resultado do Quiz</strong></h4>
-                            <p>Implemente aqui a lógica para exibir o resultado do quiz.</p></p>  
+                            <h4><strong>Resultado do Quiz</strong>:</h4> 
+                            <p>
+                            {% if visitante|length < acertos|length  %} Parabéns!! {% else %} Você não foi bem! Que tal, tentar novamente? Clique aqui ...
+                            <a href="{% url 'criar_perfil_visitante' %}" style='margin-top: -10rem; width: 5rem; height: auto; color: #0078d4;'><i class="fa-solid fa-marker" style="font-size: 3.5rem;"></i></a> {% endif %}<br>
+                            Você teve {{acertos|length}} acertos</p>
+                            
+                            {% for v in visitante %}
+
+                              <ul id="respostaVisitante">
+                                <li style=" margin: 0.5em; padding: 0.5rem 1rem;{% if v.resposta.correta %} background-color: cadetblue; {% else %} background-color: rgb(247, 186, 189);{% endif %} "><b style="margin-right: 0.5rem;">Questão {{forloop.counter}} - {{v.pergunta.texto_pergunta}} </b>
+                                  <p>{{v.resposta.texto_resposta}}  <span style="text-transform: uppercase;">{% if v.resposta.correta %} Acertou! <i class="fa-regular fa-face-laugh-beam" style="font-size: 2rem;padding: 1rem; color: rgb(238, 216, 14);"></i> {% else %}  <i class="fa-regular fa-face-sad-cry" style="font-size: 2rem;padding-left: 1rem; color: rgb(65, 156, 192);"></i> Errou!{% endif %}</span></p></li>
+                              </ul>
+                            {% endfor %}
                             <div class="primary-button">
                               
                             </div>

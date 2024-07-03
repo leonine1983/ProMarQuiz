@@ -26,10 +26,12 @@ def responder_perguntas(request, perfil_id):
                 resposta = Resposta.objects.get(id=resposta_id)
                 VisitantePerguntaResposta.objects.create(visitante=perfil_visitante, pergunta=pergunta, resposta=resposta)
         
-        return redirect('resultado_quiz')
+        return redirect('resultado_quiz', pk = perfil_visitante.id )
     
     return render(request, 'responder_perguntas.html', {'perfil_visitante': perfil_visitante, 'perguntas': perguntas, 'respostas': respostas})
 
-def resultado_quiz(request):
-    # Implementar lógica para exibir o resultado do quiz, se necessário
-    return render(request, 'resultado_quiz.html')
+def resultado_quiz(request, pk):
+    visitante = VisitantePerguntaResposta.objects.filter(visitante = pk)
+    visitante_acertos = visitante.filter(resposta__correta = True)
+    
+    return render(request, 'resultado_quiz.html', {'visitante':visitante, 'acertos': visitante_acertos})

@@ -34,9 +34,14 @@ class PerfilVisitante(models.Model):
         ('Vera Cruz', 'Vera Cruz'),
         ('Outro', 'Outro'),
     )
+
+    GOSTOU_CHOICES = (
+        ('1', 'SIM'),
+        ('0', 'NÃO')
+    )
     nome_completo = models.CharField(max_length=100,null=True)     
     nota_visita = models.IntegerField(choices=NOTA_VISITA_CHOICES)
-    gostou_visita = models.CharField(max_length=100) 
+    gostou_visita = models.CharField(max_length=100, choices=GOSTOU_CHOICES) 
     idade = models.CharField(max_length=20, choices=IDADE_CHOICES)
     turma = models.CharField(max_length=50, choices=TURMA_CHOICES)
     municipio_escola = models.CharField(max_length=50, choices=MUNICIPIO_CHOICES)
