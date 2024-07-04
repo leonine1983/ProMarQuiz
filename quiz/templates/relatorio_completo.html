@@ -1,24 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Relatório Completo - ProMar Quiz</title>
-    <style>
-        table {
-            border-collapse: collapse;
+{% extends "perfil_e_quiz/index.html" %}
+{% load static %}
+{% block content %}  
+<style>
+   #dashboard {
+            width: 80%;
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #dashboard h1, #dashboard h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        #dashboard table {
             width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+        #dashboard th, #dashboard td {
+            padding: 12px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-        th {
-            background-color: #f2f2f2;
+        #dashboard th {
+            background-color: #f0f0f0;
         }
-    </style>
-</head>
-<body>
+        #dashboard tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        #dashboard a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+        #dashboard a:hover {
+            text-decoration: underline;
+        }
+        #dashboard p {
+            text-align: center;
+        }
+</style>
+
+
+<div id="dashboard">
     <h1>Relatório Completo - ProMar Quiz</h1>
 
     <h2>Geral</h2>
@@ -95,5 +126,8 @@
 
     <br>
     <p><a href="?export=excel">Exportar para Excel</a></p>
-</body>
-</html>
+</div>
+    
+
+{% endblock %}
+    
