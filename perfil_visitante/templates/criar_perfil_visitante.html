@@ -6,6 +6,7 @@
           <div class="panel__content">
             <div class="container">
               <div class="row">
+                
                 <div class="col-md-8 col-md-offset-2">
                   <div class="home-content" style="padding-left: 0;">
                     <img src="{% static 'praia.gif' %}" alt="" style="position: absolute; height: 100%;z-index: 0; border-top-left-radius: 1rem;border-bottom-left-radius: 1rem;
@@ -18,7 +19,9 @@
 
                         <div class="home-box-content">
                           <div class="left-text">
-                            
+                            {% if messages %}
+                              <a href="{% url 'criar_perfil_visitante' %}" class="nav__link c-blue" style="height:7rem;width: 7rem;right: 0; margin-top: -6rem;"><img src="{% static 'img/home-icon.png' %}" alt=""></a>
+                            {% endif %}
                             <h4>Obrigado pela sua Visita ao <em>ProMar</em>!</h4>
                             <p>Para que possamos continuar aprimorando nossas atividades e entendendo melhor suas percepções, pedimos que dedique alguns momentos para responder ao nosso questionário. Suas respostas são valiosas e nos ajudarão a oferecer uma experiência ainda melhor no futuro.</p>
                             <p>Equipe ProMar</p>
