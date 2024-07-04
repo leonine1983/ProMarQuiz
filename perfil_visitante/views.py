@@ -1,18 +1,59 @@
 from django.shortcuts import render, redirect
-from .models import PerfilVisitante
 from quiz.models import Pergunta, Resposta, VisitantePerguntaResposta
+from django.contrib import messages
+
+from django.utils import timezone
+from datetime import timedelta, datetime
 from .forms import PerfilVisitanteForm
+from .models import PerfilVisitante
+
 
 def criar_perfil_visitante(request):
     if request.method == 'POST':
         form = PerfilVisitanteForm(request.POST)
         if form.is_valid():
+            nome_completo = form.cleaned_data['nome_completo']
+            data_nascimento = form.cleaned_data['data_nascimento']
+            
+            # Obtém o datetime atual
+            agora = timezone.now()
+            
+            # Calcula o tempo que passou desde o último registro
+            ultimo_registro = PerfilVisitante.objects.filter(
+                nome_completo=nome_completo,
+                data_nascimento=data_nascimento
+            ).order_by('-criado_em').first()
+
+            if ultimo_registro:
+                tempo_passado = agora - ultimo_registro.criado_em
+                
+                # Verificar se o tempo passado é menor que uma hora
+                if tempo_passado < timedelta(hours=1):
+                    # Redirecionar para uma página de aviso
+                    messages = f'{(nome_completo).upper()} Aguarde {tempo_passado} para poder preencher novamente o Quiz'
+                    return render(request, 'criar_perfil_visitante.html', {'form': form, 'tempo_passado': tempo_passado, 'messages': messages})
+
+            # Se já passou uma hora desde o último registro ou não há registros anteriores, salvar o perfil
             perfil_visitante = form.save()
             return redirect('responder_perguntas', perfil_id=perfil_visitante.id)
     else:
         form = PerfilVisitanteForm()
     
     return render(request, 'criar_perfil_visitante.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def responder_perguntas(request, perfil_id):
     perfil_visitante = PerfilVisitante.objects.get(id=perfil_id)

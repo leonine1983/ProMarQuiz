@@ -39,12 +39,15 @@ class PerfilVisitante(models.Model):
         ('1', 'SIM'),
         ('0', 'NÃO')
     )
-    nome_completo = models.CharField(max_length=100,null=True)     
+    nome_completo = models.CharField(max_length=100,null=True) 
+    data_nascimento = models.DateField(null=True)    
     nota_visita = models.IntegerField(choices=NOTA_VISITA_CHOICES)
     gostou_visita = models.CharField(max_length=100, choices=GOSTOU_CHOICES) 
     idade = models.CharField(max_length=20, choices=IDADE_CHOICES)
     turma = models.CharField(max_length=50, choices=TURMA_CHOICES)
     municipio_escola = models.CharField(max_length=50, choices=MUNICIPIO_CHOICES)
+    from django.utils import timezone
+    criado_em = models.DateTimeField(auto_created=True, default=timezone.now)
 
     class Meta:
         ordering = ['nome_completo']
