@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-=g@21wgtx2a4-asj%(mlcq36d6)pkr$m&ycskhn!g)3tol!ewa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     
     'django.contrib.staticfiles',
     'perfil_visitante',
-    'quiz'
+    'quiz',
+    'qrcode'
 ]
 
 MIDDLEWARE = [

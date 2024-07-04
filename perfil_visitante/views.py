@@ -42,19 +42,6 @@ def criar_perfil_visitante(request):
     return render(request, 'criar_perfil_visitante.html', {'form': form})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 def responder_perguntas(request, perfil_id):
     perfil_visitante = PerfilVisitante.objects.get(id=perfil_id)
     perguntas = Pergunta.objects.all()
@@ -76,3 +63,50 @@ def resultado_quiz(request, pk):
     visitante_acertos = visitante.filter(resposta__correta = True)
     
     return render(request, 'resultado_quiz.html', {'visitante':visitante, 'acertos': visitante_acertos})
+
+
+from django.shortcuts import render
+from django.conf import settings
+import qrcode
+import os
+import socket
+
+def qr_code(request):
+    # Obtém o endereço IP do servidor
+    #server_ip = request.get_host()
+    host_name = socket.gethostname()
+    server_ip = socket.gethostbyname(host_name)
+    
+    # Cria o objeto QR Code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    
+    # Adiciona os dados (neste caso, o endereço IP) ao QR Code  192.168.10.196
+    qr.add_data(f'http://{server_ip}')
+    qr.make(fit=True)
+    
+    # Gera a imagem QR Code como um arquivo de imagem (PNG)
+    qr_img = qr.make_image(fill_color="black", back_color="white")
+    
+    # Caminho onde o arquivo do QR Code será salvo na pasta de mídia
+    qr_code_path = os.path.join(settings.MEDIA_ROOT, 'qr_code.png')
+    
+    # Salva o QR Code, substituindo o arquivo se já existir
+    with open(qr_code_path, 'wb') as f:
+        qr_img.save(f, format='PNG')
+    
+    # URL do arquivo de mídia para ser usado no template
+    qr_code_url = os.path.join(settings.MEDIA_URL, 'qr_code.png')
+    print(qr_code_url)
+    
+    # Contexto para passar para o template
+    context = {
+        'server_ip': server_ip,
+        'qr_code_url': qr_code_url,
+    }
+    
+    return render(request, 'qr_code.html', context)

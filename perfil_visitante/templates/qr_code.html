@@ -1,0 +1,69 @@
+{% extends "perfil_e_quiz/index.html" %}
+{% load static %}
+{% block content %}   
+    <section class="panel " id="1"  style="background: url('{% static 'areia.jpg' %}') repeat;">
+        <article class="panel__wrapper">
+          <div class="panel__content">
+            <div class="container">
+              <div class="row">
+                
+                <div class="col-md-8 col-md-offset-2">
+                  <div class="home-content" style="padding-left: 0;">
+                    <img src="{% static 'praia.gif' %}" alt="" style="position: absolute; height: 100%;z-index: 0; border-top-left-radius: 1rem;border-bottom-left-radius: 1rem;
+                    ">
+                    <div class="row">                      
+                      <div class="col-md-12">
+                        <div class="home-heading" style="padding-left: 25%; margin-top: -5rem;">      
+                          <h1><em>QR Code</em> Mares Quiz</h1>
+                        </div>
+                        
+
+                        <div class="home-box-content" >
+                            <div class="left-text" id='content_imprimir'>
+                                {% if messages %}
+                                <a href="{% url 'criar_perfil_visitante' %}" class="nav__link c-blue" style="height:7rem;width: 7rem;right: 0; margin-top: -6rem;">
+                                    <img src="{% static 'img/home-icon.png' %}" alt="">
+                                </a>
+                                {% endif %}
+                                <p>Escaneie o QR Code abaixo para acessar esta página:</p>
+                                <img id="qrCodeImage" src="{% static 'qr_code.png' %}" alt="QR Code do IP do Servidor" >
+                                <p>Para acessar o quiz http://{{ server_ip }}</p>
+                        
+                                <!-- Botão de impressão 
+                                <button onclick="printContent()" class="btn btn-primary">Imprimir</button>-->
+                            </div>
+                        </div>
+                        
+                      
+                        <script>
+                            function printContent(){
+                                // Obtém o conteúdo da div
+                                var conteudo = document.getElementById('content_imprimir').innerHTML;
+                                
+                                // Abre uma nova janela para impressão
+                                var janela = window.open('', '', 'height=600,width=800');
+                                janela.document.write('<html><head><title>Conteúdo</title></head>');
+                                janela.document.write('<body>');
+                                janela.document.write(conteudo); // Escreve o conteúdo na nova janela
+                                janela.document.write('</body></html>');
+                                
+                                // Fecha a nova janela após a impressão
+                                janela.document.close();
+                                janela.print();
+                            }
+                        </script>
+                    
+                        
+
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+    </section>
+{% endblock %}
+    

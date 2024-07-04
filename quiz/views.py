@@ -75,8 +75,9 @@ def relatorio_completo(request):
     respostas_acertadas = VisitantePerguntaResposta.objects.values('resposta__texto_resposta').annotate(total=Count('id')).order_by('-total')[:5]
 
     # Cidades que mais acertaram
+    
     cidades_acertos = PerfilVisitante.objects.values('municipio_escola').annotate(total_acertos=Count(
-        'visitanteperguntaresposta', filter=Q(visitanteperguntaresposta__resposta__correta=True))).order_by('-total_acertos')[:5]
+        'Visitante_related', filter=Q(Visitante_related__resposta__correta=True))).order_by('-total_acertos')[:5]
 
     # Notas mais dadas
     notas_mais_dadas = PerfilVisitante.objects.values('nota_visita').annotate(total=Count('id')).order_by('-total')[:5]
@@ -99,6 +100,8 @@ def relatorio_completo(request):
         return response
     else:
         return render(request, 'relatorio_completo.html', context)
+    
+    
 
 def exportar_para_excel(context):
     workbook = xlsxwriter.Workbook('relatorio_promar.xlsx')

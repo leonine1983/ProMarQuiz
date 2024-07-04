@@ -105,7 +105,7 @@ ul {
   text-decoration: none;
   font-size: 24px;
   
-  background-color:rgb(148, 143, 143); /*  #ce20cb;   Cor do menu interno lateral esquerdo*/
+  background-color: antiquewhite; /*  #ce20cb;   Cor do menu interno lateral esquerdo*/
   -webkit-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -1134,3 +1134,12 @@ body.lb-disable-scrolling {
 .owl-carousel .owl-nav {
   display: none;
 }
+
+/*bootstrap*/
+.fs-1{font-size: 3rem;}
+.fs-2{font-size: 2.5rem;}
+.fs-3{font-size: 2rem;}
+.fs-4{font-size: 1.5rem;}
+.fs-5{font-size: 1rem;}
+.fs-6{font-size: 0.5rem;}
+.text-black{color: #343434;}
