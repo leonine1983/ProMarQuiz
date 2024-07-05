@@ -37,7 +37,8 @@ def editar_pergunta(request, pergunta_id):
     
     return render(request, 'editar_pergunta.html', {'form': form, 'pergunta': pergunta})
 
-def criar_resposta(request):
+
+def criar_resposta(request, pergunta_id):
     if request.method == 'POST':
         form = RespostaForm(request.POST)
         if form.is_valid():

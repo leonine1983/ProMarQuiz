@@ -8,13 +8,22 @@
             margin: auto;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);        
         }
         #dashboard h1, #dashboard h2 {
             color: #333;
-            text-align: center;
+            text-align: left;            
             margin-bottom: 20px;
             text-transform: uppercase;
+        }
+        #dashboard h1{
+            font-size: 2rem;            
+            margin-top: 5rem;
+        }
+        #dashboard h2{
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            display: block;
         }
         #dashboard table {
             width: 100%;
@@ -46,86 +55,182 @@
         #dashboard p {
             text-align: center;
         }
+
+
+          /* Estilo para o botão EXCEL*/
+  .excel-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ffffff; /* Cor do texto */
+    background-color: #8ae78d; /* Cor de fundo */
+    border-radius: 5px; /* Borda arredondada */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+}
+.excel-button a:hover {
+    text-decoration: none;
+}
+
+.excel-button:hover {
+    background-color: #388e3c; /* Cor de fundo ao passar o mouse */
+}
+
+.excel-button i {
+    margin-left: 5px; /* Espaçamento entre o texto e o ícone */    
+    color: #144e05; /* Cor do texto */
+    font-size: 2rem;
+}
+
+/* Estilo específico para o ícone */
+.excel-button .fa-regular {
+    color: #ffffff; /* Cor do ícone */
+    margin-left: 5px; /* Espaçamento entre o texto e o ícone */
+}
+
+.nav-win11 {
+        background-color: #cac8c9; /* cor de fundo do Windows 11 */
+        border-bottom: 1px solid #cfcfcf; /* linha inferior */
+        border-bottom-right-radius:2rem ;
+        border-bottom-left-radius: 2rem;
+        border-bottom-color: #52074b;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* fonte do Windows */
+        padding: 10px 0;
+        margin: -2rem;
+        position: fixed;
+        width: 80%;
+    }
+
+    .nav-win11 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center; /* centralizar itens */
+    }
+
+    .nav-win11 li {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #ffffff; /* fundo dos itens */
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-win11 li:hover {
+        background-color: #e0e0e0; /* cor de fundo ao passar o mouse */
+    }
+
+    @media screen and (max-width: 600px) {
+        .nav-win11 ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-win11 li {
+            margin: 5px;
+            padding: 8px 15px;
+        }
+    }
 </style>
 
 
 <div id="dashboard">
-    <h1>Relatório Completo - ProMar Quiz</h1>
+    <nav class="nav-win11">
+        <ul>
+            <li><a href="{% url "criar_pergunta" %}">Cadastrar Perguntas <i class="fa-solid fa-pen-to-square"></i></a></li>
+            <li>Cadastrar Respostas <i class="fa-solid fa-pen-to-square"></i></li>
+            <li>Relatório Geral <i class="fa-solid fa-chart-column"></i></li>
+            <a id="excel" class="excel-button " href="?export=excel">
+                Exportar para Excel <i class="fa-solid fa-file-excel"></i>
+            </a>
+        </ul>
+    </nav>
+    <h1>Relatório Completo - ProMar Quiz</h1>    
+    <hr>
+    <div style="margin-left: 10%;">
+        <h2>Geral</h2>
+        <table>
+            <tr>
+                <th>Total de Visitantes</th>
+                <td>{{ total_visitantes }}</td>
+            </tr>
+            <tr>
+                <th>Total de Acertos</th>
+                <td>{{ total_acertos }}</td>
+            </tr>
+            <tr>
+                <th>Total de Erros</th>
+                <td>{{ total_erros }}</td>
+            </tr>
+        </table>
 
-    <h2>Geral</h2>
-    <table>
-        <tr>
-            <th>Total de Visitantes</th>
-            <td>{{ total_visitantes }}</td>
-        </tr>
-        <tr>
-            <th>Total de Acertos</th>
-            <td>{{ total_acertos }}</td>
-        </tr>
-        <tr>
-            <th>Total de Erros</th>
-            <td>{{ total_erros }}</td>
-        </tr>
-    </table>
+        <h2>Respostas Mais Acertadas</h2>
+        <table>
+            <tr>
+                <th>Resposta</th>
+                <th>Total de Acertos</th>
+            </tr>
+            {% for resposta in respostas_acertadas %}
+            <tr>
+                <td>{{ resposta.resposta__texto_resposta }}</td>
+                <td>{{ resposta.total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
-    <h2>Respostas Mais Acertadas</h2>
-    <table>
-        <tr>
-            <th>Resposta</th>
-            <th>Total de Acertos</th>
-        </tr>
-        {% for resposta in respostas_acertadas %}
-        <tr>
-            <td>{{ resposta.resposta__texto_resposta }}</td>
-            <td>{{ resposta.total }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <h2>Cidades com Melhor Desempenho</h2>
+        <table>
+            <tr>
+                <th>Cidade</th>
+                <th>Total de Acertos</th>
+            </tr>
+            {% for cidade in cidades_acertos %}
+            <tr>
+                <td>{{ cidade.municipio_escola }}</td>
+                <td>{{ cidade.total_acertos }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
-    <h2>Cidades com Melhor Desempenho</h2>
-    <table>
-        <tr>
-            <th>Cidade</th>
-            <th>Total de Acertos</th>
-        </tr>
-        {% for cidade in cidades_acertos %}
-        <tr>
-            <td>{{ cidade.municipio_escola }}</td>
-            <td>{{ cidade.total_acertos }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <h2>Notas Mais Dadas</h2>
+        <table>
+            <tr>
+                <th>Nota</th>
+                <th>Total</th>
+            </tr>
+            {% for nota in notas_mais_dadas %}
+            <tr>
+                <td>{{ nota.nota_visita }}</td>
+                <td>{{ nota.total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 
-    <h2>Notas Mais Dadas</h2>
-    <table>
-        <tr>
-            <th>Nota</th>
-            <th>Total</th>
-        </tr>
-        {% for nota in notas_mais_dadas %}
-        <tr>
-            <td>{{ nota.nota_visita }}</td>
-            <td>{{ nota.total }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <h2>Idades Mais Visitadas</h2>
-    <table>
-        <tr>
-            <th>Idade</th>
-            <th>Total</th>
-        </tr>
-        {% for idade in idades_mais_visitadas %}
-        <tr>
-            <td>{{ idade.idade }}</td>
-            <td>{{ idade.total }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <h2>Idades Mais Visitadas</h2>
+        <table>
+            <tr>
+                <th>Idade</th>
+                <th>Total</th>
+            </tr>
+            {% for idade in idades_mais_visitadas %}
+            <tr>
+                <td>{{ idade.idade }}</td>
+                <td>{{ idade.total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
     <br>
-    <p><a href="?export=excel">Exportar para Excel</a></p>
+    <p>
+
+        <a id="excel" class="excel-button " href="?export=excel">
+            Exportar para Excel <i class="fa-solid fa-file-excel"></i>
+        </a>
+    </p>
 </div>
     
 

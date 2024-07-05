@@ -73,9 +73,10 @@ import socket
 
 def qr_code(request):
     # Obtém o endereço IP do servidor
-    #server_ip = request.get_host()
-    host_name = socket.gethostname()
-    server_ip = socket.gethostbyname(host_name)
+    server_ip = request.get_host()
+    #host_name = socket.gethostname()
+    #server_ip = socket.gethostbyname(host_name)
+    print(server_ip)
     
     # Cria o objeto QR Code
     qr = qrcode.QRCode(
