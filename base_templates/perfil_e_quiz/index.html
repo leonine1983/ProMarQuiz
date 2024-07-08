@@ -22,6 +22,45 @@
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-regular.css">
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/sharp-solid.css">
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
+        <style>
+
+.hover-effect1 {
+  min-height: 20px;
+  background: #F44336;
+  text-align: center;
+}
+.hover-effect1 ul {
+ padding-top: 1px;
+}
+.hover-effect1 ul li {
+ display: inline-block;
+}
+.hover-effect1 ul li a {
+ font-size: 30px;
+ text-align: center;
+ color: #fff;
+ margin: 0px 10px;
+ line-height: 50px;
+ display: inline-block;
+ width: 50px;
+ height: 50px;
+ background:#dc3545;
+ -webkit-transition: all .6s ease;
+ -moz-transition: all .6s ease;
+ -ms-transition: all .6s ease;
+ -o-transition: all .6s ease;
+ transition: all .6s ease;
+}
+.hover-effect1 ul li:hover a {
+  border-radius: 50%;
+  background: #dc3545;
+ -moz-transform: rotate(360deg);
+ -webkit-transform: rotate(360deg);
+ -o-transform: rotate(360deg);
+ -ms-transform: rotate(360deg);
+ transform: rotate(360deg);
+}
+        </style>
     </head>
     <body>      
         <nav class="nav">
@@ -254,6 +293,90 @@
           </article>
         </section>-->
         {% endblock content %}
+        <footer id="Footer"style="background-color:#253E3B; color:white" class="page-footer font-small stylish-color-dark pt-4">
+          <div class="container text-center text-md-left">
+            <div class="row">
+              <div class="col-md-4 mx-auto">
+                <!-- Content -->
+                 <div style='display:flex; justify-content: center;padding: 1rem;'><img style='width:20%' src="{% static 'logo-pro.png' %}" alt=""><h5 class="text-uppercase font-weight-bold mt-3 mb-4" style='margin-left:2rem'>Promar</h5>   </div>
+                <p>A PRÓ-MAR é uma Organização da Sociedade Civil, de caráter sócio-ambiental, sem fins lucrativos, com sede na ilha de Itaparica, município de Vera Cruz na Bahia. </p>
+                <p><a href="https://promar.org.br/institucional/">https://promar.org.br/</a></p>
+              </div>
+              <!--
+              <div id="link10" class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Products</h6>
+                
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                  <a href="#!">Travelling</a>
+                </p>
+                <p>
+                  <a href="#!">About</a>
+                </p>
+                <p>
+                  <a href="#!">BrandFlow</a>
+                </p>
+                <p>
+                  <a href="#!">Services</a>
+                </p>
+              </div>
+              
+              <div id="link10" class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 70px;">
+                <p>
+                  <a href="#!">Your Account</a>
+                </p>
+                <p>
+                  <a href="#!">Become an Affiliate</a>
+                </p>
+                <p>
+                  <a href="#!">Shipping Rates</a>
+                </p>
+                <p>
+                  <a href="#!">Help</a>
+                </p>
+              </div>-->
+              
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <div style='display:flex'>
+                  <img src="{% static 'petro.png' %}" style='height:5rem; margin:10%' alt="">                
+                  <img src="{% static 'projeto_mares.png' %}" style='height:5rem; margin:10%' alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--<hr>
+           Call to action 
+          <ul style="background-color:#253E3B" class="list-unstyled list-inline text-center py-2">
+            <li class="list-inline-item">
+              <h5 class="mb-1">Register for free</h5>
+            </li>
+            <li class="list-inline-item">
+              <a href="#Contact" class="btn btn-outline-danger btn-rounded">Sign up!</a>
+            </li>
+          </ul>-->
+          <hr>
+          <!-- Social buttons 
+          <div class="hover-effect1">
+          <ul  style="background-color:#253E3B" class="list-unstyled list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://www.facebook.com/codewithfaraz" title="Facebook"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.twitter.com/codewithfaraz" title="Twitter"><i class="fa fa-twitter"></i></a>
+            </li>
+           
+            <li class="list-inline-item">
+              <a href="#." title="Github"><i class="fa fa-github"></i></a>
+            </li>
+          </ul>
+        </div>-->
+          <!-- Copyright -->
+          <div  style="background-color:#253E3B" class="footer-copyright text-center py-3">
+            Copyright© 2024: Desenvolvido por Rogério C. da Silva - CAUAN'S Techonology
+          </div>
+        </footer>
       
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
