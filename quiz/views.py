@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Count, Q
 from .models import PerfilVisitante, VisitantePerguntaResposta
 from django.db.models.signals import post_migrate
@@ -17,16 +17,16 @@ def criar_pergunta(request):
     if request.method == 'POST':
         form = PerguntaForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('listar_perguntas')
+            pergunta = form.save()        
+            return redirect('criar_resposta', pergunta_id=pergunta.id)
     else:
-        form = PerguntaForm()
-    
-    return render(request, 'criar_pergunta.html', {'form': form})
+        form = PerguntaForm() 
+    perguntas = Pergunta.objects.all()   
+    return render(request, 'criar_pergunta.html', {'form': form, 'peguntas': perguntas})
+
 
 def editar_pergunta(request, pergunta_id):
-    pergunta = get_object_or_404(Pergunta, id=pergunta_id)
-    
+    pergunta = get_object_or_404(Pergunta, id=pergunta_id)    
     if request.method == 'POST':
         form = PerguntaForm(request.POST, instance=pergunta)
         if form.is_valid():
@@ -37,17 +37,20 @@ def editar_pergunta(request, pergunta_id):
     
     return render(request, 'editar_pergunta.html', {'form': form, 'pergunta': pergunta})
 
-
+from django.urls import reverse_lazy
 def criar_resposta(request, pergunta_id):
     if request.method == 'POST':
         form = RespostaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('listar_respostas')
+        if form.is_valid():            
+            form.instance.pergunta = Pergunta.objects.get(id = pergunta_id)
+            form.save()            
+            return redirect(reverse_lazy('criar_resposta', kwargs={'pergunta_id': pergunta_id}))
+   
     else:
-        form = RespostaForm()
-    
-    return render(request, 'criar_resposta.html', {'form': form})
+        form = RespostaForm()   
+    pergunta_p = Pergunta.objects.get(id = pergunta_id)
+    resposta_r = Resposta.objects.filter(pergunta = pergunta_id) 
+    return render(request, 'criar_resposta.html', {'form': form, 'pergunta': pergunta_p, 'resposta':resposta_r})
 
 def editar_resposta(request, resposta_id):
     resposta = get_object_or_404(Resposta, id=resposta_id)
@@ -61,6 +64,20 @@ def editar_resposta(request, resposta_id):
         form = RespostaForm(instance=resposta)
     
     return render(request, 'editar_resposta.html', {'form': form, 'resposta': resposta})
+
+
+def deletar_resposta(request, resposta_id):
+    # Obtém a resposta a ser deletada
+    resposta = get_object_or_404(Resposta, id=resposta_id)
+
+    # Deleta a resposta
+    resposta.delete()
+
+    # Obtém o ID da pergunta para redirecionamento
+    pergunta_id = resposta.pergunta.id
+
+    # Retorna para a página de criação de resposta
+    return redirect('criar_resposta', pergunta_id=pergunta_id)
 
 
 

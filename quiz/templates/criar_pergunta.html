@@ -1,14 +1,195 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Criar Pergunta - ProMar Quiz</title>
-</head>
-<body>
-    <h1>Criar Pergunta</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
-    </form>
-</body>
-</html>
+{% extends "perfil_e_quiz/index.html" %}
+{% load static %}
+{% block content %}  
+<style>
+   #dashboard {
+            width: 80%;
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);        
+        }
+        #dashboard h1, #dashboard h2 {
+            color: #333;
+            text-align: left;            
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        #dashboard h1{
+            font-size: 2rem;            
+            margin-top: 5rem;
+        }
+        #dashboard h2{
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            display: block;
+        }
+        #dashboard table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #dashboard th, #dashboard td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        #dashboard th {
+            background-color: #f0f0f0;
+        }
+        #dashboard tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        #dashboard a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+        #dashboard a:hover {
+            text-decoration: underline;
+        }
+        #dashboard p {
+            text-align: center;
+        }
+
+
+          /* Estilo para o botão EXCEL*/
+  .excel-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ffffff; /* Cor do texto */
+    background-color: #8ae78d; /* Cor de fundo */
+    border-radius: 5px; /* Borda arredondada */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+}
+.excel-button a:hover {
+    text-decoration: none;
+}
+
+.excel-button:hover {
+    background-color: #388e3c; /* Cor de fundo ao passar o mouse */
+}
+
+.excel-button i {
+    margin-left: 5px; /* Espaçamento entre o texto e o ícone */    
+    color: #144e05; /* Cor do texto */
+    font-size: 2rem;
+}
+
+/* Estilo específico para o ícone */
+.excel-button .fa-regular {
+    color: #ffffff; /* Cor do ícone */
+    margin-left: 5px; /* Espaçamento entre o texto e o ícone */
+}
+
+.nav-win11 {
+        background-color: #cac8c9; /* cor de fundo do Windows 11 */
+        border-bottom: 1px solid #cfcfcf; /* linha inferior */
+        border-bottom-right-radius:2rem ;
+        border-bottom-left-radius: 2rem;
+        border-bottom-color: #52074b;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* fonte do Windows */
+        padding: 10px 0;
+        margin: -2rem;
+        position: fixed;
+        width: 80%;
+    }
+
+    .nav-win11 ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center; /* centralizar itens */
+    }
+
+    .nav-win11 li {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #ffffff; /* fundo dos itens */
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-win11 li:hover {
+        background-color: #e0e0e0; /* cor de fundo ao passar o mouse */
+    }
+
+    @media screen and (max-width: 600px) {
+        .nav-win11 ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-win11 li {
+            margin: 5px;
+            padding: 8px 15px;
+        }
+    }
+
+footer{
+    position: fixed; left: 0; bottom: 0; width:100vw
+}
+</style>
+
+
+<div id="dashboard">
+    
+    <nav class="nav-win11">
+        <ul>
+            <li><a href="{% url 'criar_pergunta' %}">Cadastrar Perguntas <i class="fa-solid fa-pen-to-square"></i></a></li>
+            <li>Relatório Geral <i class="fa-solid fa-chart-column"></i></li>
+        </ul>
+    </nav>    
+    <h1 style="color:rgb(63, 131, 233); font-size: 3rem;"><img src="{% static 'ues.png' %}" style='width:5%' alt=""> PERGUNTAS</h1>    
+   
+        <div style="margin-left: 10%">            
+            <div style="padding:1rem; background-color:peachpuff; border-radius: 1rem; box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;">
+                <div style="display:flex;">
+                    
+                    <h1>{{pergunta.texto_pergunta}}</h1>
+                </div>            
+                <div >
+                    <form method="post" class="form-win11" style="width: 100%;">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn" style="height: 20%;" >Salvar</button>
+                    </form>
+                    <table class="table-win11" style='margin-top:3rem'>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Perguntas</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for p in  peguntas %}    
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>
+                                    {{p.texto_pergunta}}
+                                </td>
+                                <td>
+                                    <a href="{% url "criar_resposta" p.id %}">Adicionar Resposta</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>  
+                </div>
+            </div>
+        </div>
+</div>
+    
+
+{% endblock %}
+    

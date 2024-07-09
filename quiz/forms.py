@@ -9,4 +9,9 @@ class PerguntaForm(forms.ModelForm):
 class RespostaForm(forms.ModelForm):
     class Meta:
         model = Resposta
-        fields = ['pergunta', 'texto_resposta', 'correta']
+        fields = ['texto_resposta', 'correta']
+
+        correta = forms.BooleanField(
+            label="Sinalizar que essa é a opção verdadeira"
+            
+        )
