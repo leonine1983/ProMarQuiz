@@ -158,8 +158,9 @@ footer{
                     <h1>{{pergunta.texto_pergunta}}</h1>
                 </div>            
                 <div >
-                    <form method="post" class="form-win11" style="width: 100%;">
+                    <form method="post" class="form-win11" style="width: 100%; display:block">
                         {% csrf_token %}
+                        {{ form.media}}
                         {{ form.as_p }}
                         <button type="submit" class="btn" style="height: 20%;" >Salvar</button>
                     </form>

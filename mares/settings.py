@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'perfil_visitante',
     'quiz',
-    'qrcode'
+    'qrcode',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -136,4 +137,19 @@ MESSAGE_TAGS = {
     constants.ERROR: 'alert-danger',
 }
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
+CKEDITOR_CONFIGS = {
+    'default':
+        {
+            'toolbar': 'full',
+            'width': 'auto',
+            'extraPlugins': ','.join([
+                'codesnippet',
+            ]),
+        },
+}
 

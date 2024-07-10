@@ -2,9 +2,10 @@ from django.db import models
 from django.db.models.signals import post_migrate
 from django.dispatch import receiver
 from perfil_visitante.models import PerfilVisitante
+from ckeditor.fields import RichTextField
 
 class Pergunta(models.Model):
-    texto_pergunta = models.TextField()
+    texto_pergunta = RichTextField()
 
       
     class Meta:
