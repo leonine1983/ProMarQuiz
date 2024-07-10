@@ -136,7 +136,11 @@ MESSAGE_TAGS = {
     constants.WARNING: 'alert-warning',
     constants.ERROR: 'alert-danger',
 }
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+#MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+
 
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'

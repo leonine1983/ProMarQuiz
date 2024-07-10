@@ -60,6 +60,21 @@
  -ms-transform: rotate(360deg);
  transform: rotate(360deg);
 }
+
+
+
+    .alert-success {
+        background-color: #d4edda; /* Cor de fundo suave */
+        border-color: #c3e6cb; /* Cor da borda */
+        color: #155724; /* Cor do texto */
+        margin: -3rem;
+        padding: 3rem 1rem;
+    }
+
+    .d-flex{display: flex}
+    .gap-1{gap: 2rem;}
+</style>
+
         </style>
     </head>
     <body>      
@@ -83,23 +98,33 @@
             </li>
           </ul>
         </nav>
-        {% if messages %}   
-          <div id="myModal" class="modal">
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <p>{{messages}}</p>
+        {% if messages %}
+<div id="myModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <ul class="bg-success">
+                    {% for message in messages %}
+                    <li class="bg-success fs-3 alert-success" >{{ message }} <i class="fa-solid fa-check"></i></li>
+                    {% endfor %}
+                </ul>
             </div>
-          </div>
-          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-          <script>
-            // Script para mostrar o modal quando a página for carregada
-            $(document).ready(function() {
-              $('#myModal').modal('show');
-            });
-          </script>          
-        {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Script para mostrar o modal quando a página for carregada
+    $(document).ready(function() {
+        $('#myModal').modal('show');
+    });
+</script>
+{% endif %}
+
         {% block content %}        
         <!--
         <section class="panel b-yellow" id="2">

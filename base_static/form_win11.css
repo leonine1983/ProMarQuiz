@@ -120,13 +120,14 @@
     color: #1e1e1e;  /* Cor do texto */
     background-color: #f0f0f0;  /* Cor de fundo */
     border: 1px solid #eaeaea;  /* Cor da borda */
+    margin-right: 1rem;
 }
 
 /* Estilo do cabeçalho da tabela */
 .table-win11 th {
     background-color: #0078d4;  /* Cor de fundo do cabeçalho */
     color: #3B3131;  /* Cor do texto do cabeçalho */
-    padding: 12px;
+    padding: 1px;
     text-align: left;
     font-weight: 600;
     border: 1px solid #eaeaea;  /* Cor da borda */
@@ -134,8 +135,8 @@
 
 /* Estilo das células da tabela */
 .table-win11 td {
-    padding: 12px;
     border: 1px solid #eaeaea;  /* Cor da borda */
+    text-align: center;
 }
 
 /* Estilo das células do corpo da tabela */
@@ -149,5 +150,12 @@
 
 /* Estilo para a coluna 'Correta' */
 .table-win11 td:nth-child(2) {
-    text-align: center;
+    text-align: left!important;
+} 
+.table-win11 td:nth-child(3), .table-win11 td:nth-child(4)  {
+    text-align: center!important;
+} 
+.table-win11 td:nth-child(5) {
+    text-align: center!important;
+    background-color: #d3bcc0;
 }

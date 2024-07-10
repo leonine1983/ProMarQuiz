@@ -1,11 +1,11 @@
-from django.shortcuts import render, HttpResponse, redirect
 from django.db.models import Count, Q
 from .models import PerfilVisitante, VisitantePerguntaResposta
 from django.db.models.signals import post_migrate
 from django.dispatch import receiver
 from perfil_visitante.models import PerfilVisitante
+from django.contrib import messages
 
-
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Pergunta, Resposta
 from .forms import PerguntaForm, RespostaForm
@@ -17,7 +17,8 @@ def criar_pergunta(request):
     if request.method == 'POST':
         form = PerguntaForm(request.POST)
         if form.is_valid():
-            pergunta = form.save()        
+            pergunta = form.save()      
+            messages.success(request, "Pergunta criada com sucesso!")  
             return redirect('criar_resposta', pergunta_id=pergunta.id)
     else:
         form = PerguntaForm() 
@@ -31,11 +32,23 @@ def editar_pergunta(request, pergunta_id):
         form = PerguntaForm(request.POST, instance=pergunta)
         if form.is_valid():
             form.save()
-            return redirect('listar_perguntas')
+            messages.success(request,  'Pergunta atualizada com sucesso!')
+            return redirect('criar_pergunta')
     else:
         form = PerguntaForm(instance=pergunta)
     
-    return render(request, 'editar_pergunta.html', {'form': form, 'pergunta': pergunta})
+    perguntas = Pergunta.objects.all()   
+    return render(request, 'criar_pergunta.html', {'form': form, 'peguntas': perguntas})
+
+
+def deletar_pergunta(request, pergunta_id):
+    pergunta = get_object_or_404(Pergunta, id=pergunta_id)
+    pergunta.delete()
+    messages.success(request, 'Pergunta excluída com sucesso')
+    return redirect('criar_pergunta')
+
+
+# RESPOSTAS
 
 from django.urls import reverse_lazy
 def criar_resposta(request, pergunta_id):
@@ -43,7 +56,8 @@ def criar_resposta(request, pergunta_id):
         form = RespostaForm(request.POST)
         if form.is_valid():            
             form.instance.pergunta = Pergunta.objects.get(id = pergunta_id)
-            form.save()            
+            form.save()     
+            messages.success(request, 'Resposta criada com sucesso')       
             return redirect(reverse_lazy('criar_resposta', kwargs={'pergunta_id': pergunta_id}))
    
     else:
@@ -59,6 +73,7 @@ def editar_resposta(request, resposta_id):
         form = RespostaForm(request.POST, instance=resposta)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Resposta atualizada com sucesso!!')
             return redirect('listar_respostas')
     else:
         form = RespostaForm(instance=resposta)
@@ -77,6 +92,7 @@ def deletar_resposta(request, resposta_id):
     pergunta_id = resposta.pergunta.id
 
     # Retorna para a página de criação de resposta
+    messages.success(request, 'Resposta excluída com sucesso')
     return redirect('criar_resposta', pergunta_id=pergunta_id)
 
 
@@ -115,6 +131,7 @@ def relatorio_completo(request):
 
     if request.GET.get('export') == 'excel':
         response = exportar_para_excel(context)
+        messages.success(request, 'Relatório exportado com sucesso')
         return response
     else:
         return render(request, 'relatorio_completo.html', context)
