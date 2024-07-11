@@ -59,11 +59,12 @@ class Resposta(models.Model):
             Resposta.objects.create(pergunta=Pergunta.objects.get(id=5), texto_resposta="b-o vento", correta=False)
             Resposta.objects.create(pergunta=Pergunta.objects.get(id=5), texto_resposta="c-o lixo", correta=True)
 
-    
+from django.utils import timezone   
 class VisitantePerguntaResposta(models.Model):
     visitante = models.ForeignKey(PerfilVisitante, related_name='Visitante_related', null=True, on_delete=models.CASCADE)
     pergunta = models.ForeignKey(Pergunta, related_name='Peguntas_related', on_delete=models.CASCADE)
     resposta = models.ForeignKey(Resposta, related_name='Respostas_related', on_delete=models.CASCADE)
+    criado_em = models.DateTimeField(auto_created=True, default=timezone.now)
     
     def __str__(self):
         return f'{self.pergunta.texto_pergunta}: {self.resposta.texto_resposta}'
