@@ -52,8 +52,7 @@ ExecStart=/home/rogerio/app_repo/venv/bin/gunicorn \
 [Install]
 WantedBy=multi-user.target
 
-###############################################################################
-# Ativando
+############################################################################### leonine1983
 sudo systemctl start mares_gunicorn.socket
 sudo systemctl enable mares_gunicorn.socket
 
