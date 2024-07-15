@@ -441,3 +441,32 @@ Not Found: /img/contact-icon.png
 [2024-07-15 20:27:28 -0300] [25323] [DEBUG] GET /img/right-home-image.png
 Not Found: /img/right-home-image.png
  - - [15/Jul/2024:20:27:28 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:33:31 -0300] [25326] [DEBUG] GET /qr_code/
+Internal Server Error: /qr_code/
+Traceback (most recent call last):
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rogerio/app_repo/perfil_visitante/views.py", line 101, in qr_code
+    qr_img.save(f, format='PNG')
+TypeError: save() got an unexpected keyword argument 'format'
+34.72.23.133
+ - - [15/Jul/2024:20:33:31 -0300] "GET /qr_code/ HTTP/1.1" 500 57052 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:33:35 -0300] [25323] [DEBUG] GET /admin_quiz/dashboard/
+ - - [15/Jul/2024:20:33:35 -0300] "GET /admin_quiz/dashboard/ HTTP/1.1" 200 17181 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:33:36 -0300] [25324] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
+Not Found: /admin_quiz/dashboard/img/contact-icon.png
+ - - [15/Jul/2024:20:33:36 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:33:43 -0300] [25321] [DEBUG] GET /qr_code/
+Internal Server Error: /qr_code/
+Traceback (most recent call last):
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rogerio/app_repo/perfil_visitante/views.py", line 101, in qr_code
+    qr_img.save(f, format='PNG')
+TypeError: save() got an unexpected keyword argument 'format'
+34.72.23.133
+ - - [15/Jul/2024:20:33:43 -0300] "GET /qr_code/ HTTP/1.1" 500 56771 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
