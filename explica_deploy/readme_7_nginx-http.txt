@@ -1,17 +1,17 @@
 # https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/
 #
 #PARA CONFIGURAR O NGINX
-#sudo nano /etc/nginx/sites-available/upa
-#sudo ln -s /etc/nginx/sites-available/upa /etc/nginx/sites-enabled/upa 
+#sudo nano /etc/nginx/sites-available/mares
+#sudo ln -s /etc/nginx/sites-available/mares /etc/nginx/sites-enabled/mares 
 #sudo nginx -t
 # sudo systemctl restart nginx
-#cd /etc/nginx/sites-available/upa 
+#cd /etc/nginx/sites-available/mares 
 # REPLACES
-# 34.95.242.9 = Replace with your domain
-# /home/matiasaildo/app_repo = Replace with the path to the folder for the project
-# /home/matiasaildo/app_repo/static = Replace with the path to the folder for static files
-# /home/matiasaildo/app_repo/media = Replace with the path to the folder for media files
-# upa_gunicorn.socket = Replace with your unix socket name
+# 34.72.23.133 = Replace with your domain
+# /home/rogerio/app_repo = Replace with the path to the folder for the project
+# /home/rogerio/app_repo/static = Replace with the path to the folder for static files
+# /home/rogerio/app_repo/media = Replace with the path to the folder for media files
+# mares_gunicorn.socket = Replace with your unix socket name
 # 
 # Set timezone
 # List - timedatectl list-timezones
@@ -21,26 +21,26 @@
 server {
   listen 80;
   listen [::]:80;
-  server_name 34.95.242.9;
+  server_name 34.72.23.133;
 
   # Add index.php to the list if you are using PHP
   index index.html index.htm index.nginx-debian.html index.php;
   
-  # ATTENTION: /home/matiasaildo/app_repo/static
+  # ATTENTION: /home/rogerio/app_repo/static
   location /static {
     autoindex on;
-    alias /home/matiasaildo/app_repo/static;
+    alias /home/rogerio/app_repo/static;
   }
 
-  # ATTENTION: /home/matiasaildo/app_repo/media 
+  # ATTENTION: /home/rogerio/app_repo/media 
   location /media {
     autoindex on;
-    alias /home/matiasaildo/app_repo/media;
+    alias /home/rogerio/app_repo/media;
   }
 
-  # ATTENTION: upa_gunicorn.socket
+  # ATTENTION: mares_gunicorn.socket
   location / {
-    proxy_pass http://unix:/run/upa_gunicorn.socket;
+    proxy_pass http://unix:/run/mares_gunicorn.socket;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';
@@ -81,6 +81,6 @@ server {
     application/rss+xml
     image/svg+xml;
 
-  #access_log  /var/log/nginx/34.95.242.9-access.log;
-  error_log   /var/log/nginx/34.95.242.9-error.log;
+  #access_log  /var/log/nginx/34.72.23.133-access.log;
+  error_log   /var/log/nginx/34.72.23.133-error.log;
 }
