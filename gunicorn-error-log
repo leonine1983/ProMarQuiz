@@ -1,0 +1,443 @@
+[2024-07-15 22:14:46 +0000] [25320] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/run/mares_gunicorn.socket']
+  backlog: 2048
+  workers: 6
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/rogerio/app_repo
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1001
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: -
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/rogerio/app_repo/gunicorn-error-log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: True
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: mares.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7ff3bcda7430>
+  on_reload: <function OnReload.on_reload at 0x7ff3bcda7550>
+  when_ready: <function WhenReady.when_ready at 0x7ff3bcda7670>
+  pre_fork: <function Prefork.pre_fork at 0x7ff3bcda7790>
+  post_fork: <function Postfork.post_fork at 0x7ff3bcda78b0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7ff3bcda79d0>
+  worker_int: <function WorkerInt.worker_int at 0x7ff3bcda7af0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7ff3bcda7c10>
+  pre_exec: <function PreExec.pre_exec at 0x7ff3bcda7d30>
+  pre_request: <function PreRequest.pre_request at 0x7ff3bcda7e50>
+  post_request: <function PostRequest.post_request at 0x7ff3bcda7ee0>
+  child_exit: <function ChildExit.child_exit at 0x7ff3bd49d040>
+  worker_exit: <function WorkerExit.worker_exit at 0x7ff3bd49d160>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7ff3bd49d280>
+  on_exit: <function OnExit.on_exit at 0x7ff3bd49d3a0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7ff3bd49d4c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-15 22:14:46 +0000] [25320] [INFO] Starting gunicorn 22.0.0
+[2024-07-15 22:14:46 +0000] [25320] [DEBUG] Arbiter booted
+[2024-07-15 22:14:46 +0000] [25320] [INFO] Listening at: unix:/run/mares_gunicorn.socket (25320)
+[2024-07-15 22:14:46 +0000] [25320] [INFO] Using worker: sync
+[2024-07-15 22:14:46 +0000] [25321] [INFO] Booting worker with pid: 25321
+[2024-07-15 22:14:46 +0000] [25322] [INFO] Booting worker with pid: 25322
+[2024-07-15 22:14:46 +0000] [25323] [INFO] Booting worker with pid: 25323
+[2024-07-15 22:14:46 +0000] [25324] [INFO] Booting worker with pid: 25324
+[2024-07-15 22:14:46 +0000] [25325] [INFO] Booting worker with pid: 25325
+[2024-07-15 22:14:46 +0000] [25326] [INFO] Booting worker with pid: 25326
+[2024-07-15 22:14:46 +0000] [25320] [DEBUG] 6 workers
+[2024-07-15 19:14:47 -0300] [25321] [DEBUG] GET /
+ - - [15/Jul/2024:19:14:47 -0300] "GET / HTTP/1.1" 200 13288 "-" "curl/7.68.0"
+[2024-07-15 19:54:36 -0300] [25325] [DEBUG] GET /
+ - - [15/Jul/2024:19:54:36 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:54:37 -0300] [25321] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:19:54:37 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:54:37 -0300] [25321] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:19:54:37 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:54:46 -0300] [25324] [DEBUG] GET /apple-touch-icon.png
+Not Found: /apple-touch-icon.png
+ - - [15/Jul/2024:19:54:46 -0300] "GET /apple-touch-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:54:54 -0300] [25322] [DEBUG] GET /
+ - - [15/Jul/2024:19:54:54 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46"
+[2024-07-15 19:55:34 -0300] [25323] [DEBUG] GET /
+ - - [15/Jul/2024:19:55:34 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:55:35 -0300] [25324] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:19:55:35 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:55:35 -0300] [25326] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:19:55:35 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:55:36 -0300] [25325] [DEBUG] GET /
+ - - [15/Jul/2024:19:55:36 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:55:37 -0300] [25322] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:19:55:37 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:55:37 -0300] [25322] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:19:55:37 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:55:38 -0300] [25322] [DEBUG] GET /
+ - - [15/Jul/2024:19:55:38 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:55:38 -0300] [25322] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:19:55:38 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:55:38 -0300] [25324] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:19:55:38 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:00 -0300] [25321] [DEBUG] GET /
+ - - [15/Jul/2024:19:56:00 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:00 -0300] [25322] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:19:56:00 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:00 -0300] [25322] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:19:56:00 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:02 -0300] [25326] [DEBUG] GET /
+ - - [15/Jul/2024:19:56:02 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:02 -0300] [25324] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:19:56:02 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:02 -0300] [25324] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:19:56:02 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:04 -0300] [25325] [DEBUG] GET /
+ - - [15/Jul/2024:19:56:04 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:04 -0300] [25323] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:19:56:04 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:56:04 -0300] [25323] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:19:56:04 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 19:59:08 -0300] [25326] [DEBUG] GET /
+ - - [15/Jul/2024:19:59:08 -0300] "GET / HTTP/1.1" 200 13288 "-" "-"
+[2024-07-15 19:59:08 -0300] [25321] [DEBUG] GET /
+[2024-07-15 19:59:08 -0300] [25325] [DEBUG] GET /odinhttpcall1721084348
+[2024-07-15 19:59:08 -0300] [25324] [DEBUG] POST /sdk
+ - - [15/Jul/2024:19:59:08 -0300] "GET / HTTP/1.1" 200 13288 "-" "-"
+Not Found: /sdk
+ - - [15/Jul/2024:19:59:08 -0300] "POST /sdk HTTP/1.1" 404 3054 "-" "Mozilla/5.0 (compatible; Odin; https://docs.getodin.com/)"
+Not Found: /odinhttpcall1721084348
+ - - [15/Jul/2024:19:59:08 -0300] "GET /odinhttpcall1721084348 HTTP/1.1" 404 3110 "-" "Mozilla/5.0 (compatible; Odin; https://docs.getodin.com/)"
+[2024-07-15 19:59:08 -0300] [25326] [DEBUG] GET /evox/about
+Not Found: /evox/about
+ - - [15/Jul/2024:19:59:08 -0300] "GET /evox/about HTTP/1.1" 404 3074 "-" "Mozilla/5.0 (compatible; Odin; https://docs.getodin.com/)"
+[2024-07-15 19:59:08 -0300] [25326] [DEBUG] GET /HNAP1
+Not Found: /HNAP1
+ - - [15/Jul/2024:19:59:08 -0300] "GET /HNAP1 HTTP/1.1" 404 3059 "-" "Mozilla/5.0 (compatible; Odin; https://docs.getodin.com/)"
+[2024-07-15 19:59:08 -0300] [25326] [DEBUG] GET /
+ - - [15/Jul/2024:19:59:08 -0300] "GET / HTTP/1.1" 200 13288 "-" "-"
+[2024-07-15 19:59:09 -0300] [25326] [DEBUG] GET /
+ - - [15/Jul/2024:19:59:09 -0300] "GET / HTTP/1.1" 200 13288 "-" "-"
+[2024-07-15 19:59:10 -0300] [25325] [DEBUG] GET /
+[2024-07-15 19:59:10 -0300] [25323] [DEBUG] GET /cgi-bin/authLogin.cgi
+[2024-07-15 19:59:10 -0300] [25322] [DEBUG] GET /v2/_catalog
+[2024-07-15 19:59:10 -0300] [25321] [DEBUG] GET /solr/admin/info/system
+ - - [15/Jul/2024:19:59:10 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (compatible; Odin; https://docs.getodin.com/)"
+[2024-07-15 19:59:10 -0300] [25325] [DEBUG] GET /query
+Not Found: /query
+ - - [15/Jul/2024:19:59:10 -0300] "GET /query?q=SHOW+DIAGNOSTICS HTTP/1.1" 404 3078 "-" "Go-http-client/1.1"
+Not Found: /v2/_catalog
+Not Found: /solr/admin/info/system
+ - - [15/Jul/2024:19:59:10 -0300] "GET /v2/_catalog HTTP/1.1" 404 3077 "-" "Go-http-client/1.1"
+ - - [15/Jul/2024:19:59:10 -0300] "GET /solr/admin/info/system HTTP/1.1" 404 3110 "-" "Go-http-client/1.1"
+Not Found: /cgi-bin/authLogin.cgi
+ - - [15/Jul/2024:19:59:10 -0300] "GET /cgi-bin/authLogin.cgi HTTP/1.1" 404 3107 "-" "Go-http-client/1.1"
+[2024-07-15 19:59:10 -0300] [25326] [DEBUG] GET /solr/admin/cores
+Not Found: /solr/admin/cores
+ - - [15/Jul/2024:19:59:10 -0300] "GET /solr/admin/cores?action=STATUS&wt=json HTTP/1.1" 404 3118 "-" "Go-http-client/1.1"
+[2024-07-15 20:00:09 -0300] [25325] [DEBUG] GET /
+ - - [15/Jul/2024:20:00:09 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:09 -0300] [25325] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:00:09 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:10 -0300] [25324] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:00:10 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:11 -0300] [25322] [DEBUG] GET /
+ - - [15/Jul/2024:20:00:11 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:12 -0300] [25325] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:00:12 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:12 -0300] [25325] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:00:12 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:12 -0300] [25326] [DEBUG] GET /
+ - - [15/Jul/2024:20:00:12 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:13 -0300] [25326] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:00:13 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:13 -0300] [25322] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:00:13 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:00:46 -0300] [25323] [DEBUG] POST /
+/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py:1535: RuntimeWarning: DateTimeField PerfilVisitante.criado_em received a naive datetime (2024-07-11 00:00:00) while time zone support is active.
+  warnings.warn(
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such table: perfil_visitante_perfilvisitante
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rogerio/app_repo/perfil_visitante/views.py", line 22, in criar_perfil_visitante
+    ultimo_registro = PerfilVisitante.objects.filter(
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1057, in first
+    for obj in queryset[:1]:
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/models/query.py", line 398, in __iter__
+    self._fetch_all()
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/models/query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such table: perfil_visitante_perfilvisitante
+ - - [15/Jul/2024:20:00:46 -0300] "POST / HTTP/1.1" 500 130927 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:20 -0300] [25326] [DEBUG] POST /
+/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/db/models/fields/__init__.py:1535: RuntimeWarning: DateTimeField PerfilVisitante.criado_em received a naive datetime (2024-07-11 00:00:00) while time zone support is active.
+  warnings.warn(
+ - - [15/Jul/2024:20:01:20 -0300] "POST / HTTP/1.1" 302 0 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:20 -0300] [25325] [DEBUG] GET /responder/1/
+ - - [15/Jul/2024:20:01:20 -0300] "GET /responder/1/ HTTP/1.1" 200 28791 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:20 -0300] [25321] [DEBUG] GET /responder/1/img/contact-icon.png
+Not Found: /responder/1/img/contact-icon.png
+ - - [15/Jul/2024:20:01:20 -0300] "GET /responder/1/img/contact-icon.png HTTP/1.1" 404 3140 "http://34.72.23.133/responder/1/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:21 -0300] [25326] [DEBUG] GET /responder/1/img/right-home-image.png
+Not Found: /responder/1/img/right-home-image.png
+ - - [15/Jul/2024:20:01:21 -0300] "GET /responder/1/img/right-home-image.png HTTP/1.1" 404 3152 "http://34.72.23.133/responder/1/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:21 -0300] [25325] [DEBUG] GET /responder/1/apple-touch-icon.png
+Not Found: /responder/1/apple-touch-icon.png
+ - - [15/Jul/2024:20:01:21 -0300] "GET /responder/1/apple-touch-icon.png HTTP/1.1" 404 3140 "http://34.72.23.133/responder/1/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:40 -0300] [25321] [DEBUG] POST /responder/1/
+ - - [15/Jul/2024:20:01:40 -0300] "POST /responder/1/ HTTP/1.1" 302 0 "http://34.72.23.133/responder/1/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:41 -0300] [25325] [DEBUG] GET /resultado/1
+ - - [15/Jul/2024:20:01:41 -0300] "GET /resultado/1 HTTP/1.1" 200 13389 "http://34.72.23.133/responder/1/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:41 -0300] [25324] [DEBUG] GET /resultado/img/contact-icon.png
+Not Found: /resultado/img/contact-icon.png
+ - - [15/Jul/2024:20:01:41 -0300] "GET /resultado/img/contact-icon.png HTTP/1.1" 404 3134 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:41 -0300] [25323] [DEBUG] GET /resultado/img/right-home-image.png
+Not Found: /resultado/img/right-home-image.png
+ - - [15/Jul/2024:20:01:41 -0300] "GET /resultado/img/right-home-image.png HTTP/1.1" 404 3146 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:50 -0300] [25322] [DEBUG] GET /
+ - - [15/Jul/2024:20:01:50 -0300] "GET / HTTP/1.1" 200 13288 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:50 -0300] [25326] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:01:50 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:01:50 -0300] [25326] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:01:50 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:02:31 -0300] [25322] [DEBUG] GET /
+ - - [15/Jul/2024:20:02:31 -0300] "GET / HTTP/1.1" 200 13288 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:02:31 -0300] [25325] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:02:31 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:02:32 -0300] [25325] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:02:32 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:02:34 -0300] [25322] [DEBUG] GET /
+ - - [15/Jul/2024:20:02:34 -0300] "GET / HTTP/1.1" 200 13288 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:02:34 -0300] [25324] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:02:34 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:02:34 -0300] [25324] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:02:34 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:02:49 -0300] [25322] [DEBUG] GET /
+ - - [15/Jul/2024:20:02:49 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0"
+[2024-07-15 20:02:49 -0300] [25324] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:02:49 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0"
+[2024-07-15 20:02:49 -0300] [25323] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:02:49 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0"
+[2024-07-15 20:02:52 -0300] [25323] [DEBUG] GET /favicon.ico
+Not Found: /favicon.ico
+ - - [15/Jul/2024:20:02:52 -0300] "GET /favicon.ico HTTP/1.1" 404 3077 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0"
+[2024-07-15 20:08:41 -0300] [25321] [DEBUG] GET /
+ - - [15/Jul/2024:20:08:41 -0300] "GET / HTTP/1.1" 200 13288 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
+[2024-07-15 20:08:42 -0300] [25325] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:08:42 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
+[2024-07-15 20:08:42 -0300] [25326] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:08:42 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
+[2024-07-15 20:09:48 -0300] [25322] [DEBUG] GET /
+ - - [15/Jul/2024:20:09:48 -0300] "GET / HTTP/1.1" 200 13288 "-" "-"
+[2024-07-15 20:11:57 -0300] [25325] [DEBUG] GET /
+ - - [15/Jul/2024:20:11:57 -0300] "GET / HTTP/1.1" 200 13288 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
+[2024-07-15 20:11:57 -0300] [25321] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:11:57 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
+[2024-07-15 20:11:57 -0300] [25323] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:11:57 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
+[2024-07-15 20:12:01 -0300] [25326] [DEBUG] GET /
+ - - [15/Jul/2024:20:12:01 -0300] "GET / HTTP/1.1" 200 13288 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:12:02 -0300] [25324] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:12:02 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:12:02 -0300] [25324] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:12:02 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:19:47 -0300] [25325] [DEBUG] POST /boaform/admin/formLogin
+Not Found: /boaform/admin/formLogin
+ - - [15/Jul/2024:20:19:47 -0300] "POST /boaform/admin/formLogin HTTP/1.1" 404 3114 "http://34.72.23.133:80/admin/login.asp" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:71.0) Gecko/20100101 Firefox/71.0"
+[2024-07-15 20:21:02 -0300] [25321] [DEBUG] GET /
+ - - [15/Jul/2024:20:21:02 -0300] "GET / HTTP/1.1" 200 13288 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:21:03 -0300] [25322] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:21:03 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:21:03 -0300] [25323] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:21:03 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:21:55 -0300] [25325] [DEBUG] GET /
+ - - [15/Jul/2024:20:21:55 -0300] "GET / HTTP/1.1" 200 13288 "http://34.72.23.133/resultado/1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:21:55 -0300] [25322] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:21:55 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:21:55 -0300] [25322] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:21:55 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:22:11 -0300] [25324] [DEBUG] GET /admin_quiz/dashboard/
+ - - [15/Jul/2024:20:22:11 -0300] "GET /admin_quiz/dashboard/ HTTP/1.1" 200 16320 "http://34.72.23.133/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:22:12 -0300] [25326] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
+Not Found: /admin_quiz/dashboard/img/contact-icon.png
+ - - [15/Jul/2024:20:22:12 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:22:12 -0300] [25323] [DEBUG] GET /admin_quiz/dashboard/apple-touch-icon.png
+Not Found: /admin_quiz/dashboard/apple-touch-icon.png
+ - - [15/Jul/2024:20:22:12 -0300] "GET /admin_quiz/dashboard/apple-touch-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:22:41 -0300] [25326] [DEBUG] GET /qr_code/
+Internal Server Error: /qr_code/
+Traceback (most recent call last):
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rogerio/app_repo/perfil_visitante/views.py", line 101, in qr_code
+    qr_img.save(f, format='PNG')
+TypeError: save() got an unexpected keyword argument 'format'
+34.72.23.133
+ - - [15/Jul/2024:20:22:41 -0300] "GET /qr_code/ HTTP/1.1" 500 56771 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:23:39 -0300] [25323] [DEBUG] GET /
+ - - [15/Jul/2024:20:23:39 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:23:39 -0300] [25322] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:23:39 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:23:40 -0300] [25322] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:23:40 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:24:03 -0300] [25324] [DEBUG] GET /favicon.ico
+[2024-07-15 20:24:03 -0300] [25325] [DEBUG] GET /apple-touch-icon.png
+Not Found: /favicon.ico
+ - - [15/Jul/2024:20:24:03 -0300] "GET /favicon.ico HTTP/1.1" 404 3077 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+Not Found: /apple-touch-icon.png
+ - - [15/Jul/2024:20:24:03 -0300] "GET /apple-touch-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:24:07 -0300] [25324] [DEBUG] GET /
+ - - [15/Jul/2024:20:24:07 -0300] "GET / HTTP/1.1" 200 13288 "https://www.google.com/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/25.0 Chrome/121.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:24:08 -0300] [25321] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:24:08 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/25.0 Chrome/121.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:24:08 -0300] [25323] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:24:08 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/25.0 Chrome/121.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:25:10 -0300] [25323] [DEBUG] GET /admin_quiz/dashboard/
+ - - [15/Jul/2024:20:25:10 -0300] "GET /admin_quiz/dashboard/?export=excel HTTP/1.1" 200 5683 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:25:24 -0300] [25324] [DEBUG] GET /qr_code/
+Internal Server Error: /qr_code/
+Traceback (most recent call last):
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/rogerio/app_repo/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/rogerio/app_repo/perfil_visitante/views.py", line 101, in qr_code
+    qr_img.save(f, format='PNG')
+TypeError: save() got an unexpected keyword argument 'format'
+34.72.23.133
+ - - [15/Jul/2024:20:25:24 -0300] "GET /qr_code/ HTTP/1.1" 500 56915 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 OPR/111.0.0.0"
+[2024-07-15 20:27:27 -0300] [25326] [DEBUG] GET /
+ - - [15/Jul/2024:20:27:27 -0300] "GET / HTTP/1.1" 200 13288 "-" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:27:28 -0300] [25325] [DEBUG] GET /img/contact-icon.png
+Not Found: /img/contact-icon.png
+ - - [15/Jul/2024:20:27:28 -0300] "GET /img/contact-icon.png HTTP/1.1" 404 3104 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
+[2024-07-15 20:27:28 -0300] [25323] [DEBUG] GET /img/right-home-image.png
+Not Found: /img/right-home-image.png
+ - - [15/Jul/2024:20:27:28 -0300] "GET /img/right-home-image.png HTTP/1.1" 404 3116 "http://34.72.23.133/" "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36"
