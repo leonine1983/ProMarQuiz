@@ -47,7 +47,8 @@ class PerfilVisitante(models.Model):
     turma = models.CharField(max_length=50, choices=TURMA_CHOICES)
     municipio_escola = models.CharField(max_length=50, choices=MUNICIPIO_CHOICES)
     from django.utils import timezone
-    criado_em = models.DateTimeField(auto_created=True, default=timezone.now)
+    #criado_em = models.DateTimeField(auto_created=True, default=timezone.now, verbose_name="Data do cadastro")
+    criado_em = models.DateTimeField( verbose_name="Data do cadastro")
 
     class Meta:
         ordering = ['nome_completo']

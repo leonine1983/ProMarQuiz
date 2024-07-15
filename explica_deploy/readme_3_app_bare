@@ -22,7 +22,7 @@ cd ~
 
 No seu computador local, adicione o bare como remoto:
 
-```#-------------- git remote add app_bare matiasaildo@34.95.242.9:~/app_bare
+```# git remote add app_bare matiasaildo@34.95.242.9:~/app_bare
 git remote add app_bare cursodjangoserver:~/app_bare
 git push app_bare <branch>
 ```
