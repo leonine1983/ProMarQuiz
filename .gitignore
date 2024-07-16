@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+relatorio_promar.xlsx
+qr_code.png
 
 # C extensions
 *.so
