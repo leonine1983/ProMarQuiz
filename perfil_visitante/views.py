@@ -3,9 +3,14 @@ from quiz.models import Pergunta, Resposta, VisitantePerguntaResposta
 from django.contrib import messages
 
 from django.utils import timezone
-from datetime import timedelta, datetime
+from datetime import timedelta
 from .forms import PerfilVisitanteForm
 from .models import PerfilVisitante
+import qrcode
+from django.conf import settings
+import os
+import base64
+from io import BytesIO
 
 
 def criar_perfil_visitante(request):
@@ -65,19 +70,8 @@ def resultado_quiz(request, pk):
     return render(request, 'resultado_quiz.html', {'visitante':visitante, 'acertos': visitante_acertos})
 
 
-from django.shortcuts import render
-from django.conf import settings
-import qrcode
-import os
-import socket
-
 def qr_code(request):
-    # Obtém o endereço IP do servidor
-    #server_ip = request.get_host()
     server_ip = '34.72.23.133'
-    #host_name = socket.gethostname()
-    #server_ip = socket.gethostbyname(host_name)
-    print(server_ip)
     
     # Cria o objeto QR Code
     qr = qrcode.QRCode(
@@ -87,23 +81,20 @@ def qr_code(request):
         border=4,
     )
     
-    # Adiciona os dados (neste caso, o endereço IP) ao QR Code  192.168.10.196
+    # Adiciona os dados (neste caso, o endereço IP) ao QR Code
     qr.add_data(f'http://{server_ip}')
     qr.make(fit=True)
     
-    # Gera a imagem QR Code como um arquivo de imagem (PNG)
+    # Cria um buffer de memória para salvar a imagem do QR Code
     qr_img = qr.make_image(fill_color="black", back_color="white")
+    buffer = BytesIO()
+    qr_img.save(buffer, format='PNG')
     
-    # Caminho onde o arquivo do QR Code será salvo na pasta de mídia
-    qr_code_path = os.path.join(settings.MEDIA_ROOT, 'qr_code.png')
-    
-    # Salva o QR Code, substituindo o arquivo se já existir
-    with open(qr_code_path, 'wb') as f:
-        qr_img.save(f, format='PNG')
+    # Converte a imagem para base64
+    qr_code_base64 = base64.b64encode(buffer.getvalue()).decode()
     
     # URL do arquivo de mídia para ser usado no template
-    qr_code_url = os.path.join(settings.MEDIA_URL, 'qr_code.png')
-    print(qr_code_url)
+    qr_code_url = f"data:image/png;base64,{qr_code_base64}"
     
     # Contexto para passar para o template
     context = {
@@ -112,3 +103,4 @@ def qr_code(request):
     }
     
     return render(request, 'qr_code.html', context)
+

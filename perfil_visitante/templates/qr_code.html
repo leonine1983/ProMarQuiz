@@ -15,9 +15,7 @@
                       <div class="col-md-12">
                         <div class="home-heading" style="padding-left: 25%; margin-top: -5rem;">      
                           <h1><em>QR Code</em> Mares Quiz</h1>
-                        </div>
-                        
-
+                        </div>  
                         <div class="home-box-content" >
                             <div class="left-text" id='content_imprimir'>
                                 {% if messages %}
@@ -26,15 +24,13 @@
                                 </a>
                                 {% endif %}
                                 <p>Escaneie o QR Code abaixo para acessar esta página:</p>
-                                <img id="qrCodeImage" src="{% static 'qr_code.png' %}" alt="QR Code do IP do Servidor" >
-                                <p>Para acessar o quiz http://{{ server_ip }}</p>
+                                <img src="{{ qr_code_url }}" alt="QR Code" />
+                                <p>Endereço IP do servidor: {{ server_ip }}</p>
                         
                                 <!-- Botão de impressão 
                                 <button onclick="printContent()" class="btn btn-primary">Imprimir</button>-->
                             </div>
-                        </div>
-                        
-                      
+                        </div>    
                         <script>
                             function printContent(){
                                 // Obtém o conteúdo da div
