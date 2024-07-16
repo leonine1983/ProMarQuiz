@@ -98,57 +98,63 @@ def deletar_resposta(request, resposta_id):
 
 import calendar
 import datetime
+from django.http import HttpResponse
+import xlsxwriter
+from django.db.models import Count, Q
+import calendar
+import datetime
+
+
 def relatorio_completo(request):
     if request.method == 'GET':
         mes = request.GET.get('mes')
         if mes:
-            resposta_visitante = VisitantePerguntaResposta.objects.filter(criado_em__month = mes)     
-            perfil_visitante = PerfilVisitante.objects.filter(criado_em__month = mes)  
+            resposta_visitante = VisitantePerguntaResposta.objects.filter(criado_em__month=mes)     
+            perfil_visitante = PerfilVisitante.objects.filter(criado_em__month=mes)  
             mes_nome = calendar.month_name[int(mes)]
         else:
             resposta_visitante = VisitantePerguntaResposta.objects.all()
             perfil_visitante = PerfilVisitante.objects.all()  
             mes_nome = calendar.month_name[datetime.datetime.now().month]
 
-    # Quantidade de visitantes
-    total_visitantes = perfil_visitante.count()
+        # Quantidade de visitantes
+        total_visitantes = perfil_visitante.count()
 
-    # Quantidade de respostas corretas e incorretas
-    total_acertos = resposta_visitante.filter(resposta__correta=True).count()
-    total_erros = resposta_visitante.filter(resposta__correta=False).count()
+        # Quantidade de respostas corretas e incorretas
+        total_acertos = resposta_visitante.filter(resposta__correta=True).count()
+        total_erros = resposta_visitante.filter(resposta__correta=False).count()
 
-    # Respostas mais acertadas
-    respostas_acertadas = resposta_visitante.values('resposta__texto_resposta').annotate(total=Count('id')).order_by('-total')
+        # Respostas mais acertadas
+        respostas_acertadas = resposta_visitante.values('resposta__texto_resposta').annotate(total=Count('id')).order_by('-total')
 
-    # Cidades que mais acertaram
-    
-    cidades_acertos = perfil_visitante.values('municipio_escola').annotate(total_acertos=Count(
-        'Visitante_related', filter=Q(Visitante_related__resposta__correta=True))).order_by('-total_acertos')
+        # Cidades que mais acertaram
+        cidades_acertos = perfil_visitante.values('municipio_escola').annotate(total_acertos=Count(
+            'Visitante_related', filter=Q(Visitante_related__resposta__correta=True))).order_by('-total_acertos')
 
-    # Notas mais dadas
-    notas_mais_dadas = perfil_visitante.values('nota_visita').annotate(total=Count('id')).order_by('-total')
+        # Notas mais dadas
+        notas_mais_dadas = perfil_visitante.values('nota_visita').annotate(total=Count('id')).order_by('-total')
 
-    # Idades mais visitadas
-    idades_mais_visitadas = perfil_visitante.values('idade').annotate(total=Count('id')).order_by('-total')
+        # Idades mais visitadas
+        idades_mais_visitadas = perfil_visitante.values('idade').annotate(total=Count('id')).order_by('-total')
 
-    context = {
-        'total_visitantes': total_visitantes,
-        'total_acertos': total_acertos,
-        'total_erros': total_erros,
-        'respostas_acertadas': respostas_acertadas,
-        'cidades_acertos': cidades_acertos,
-        'notas_mais_dadas': notas_mais_dadas,
-        'idades_mais_visitadas': idades_mais_visitadas,
-        'mes_nome': mes_nome
-    }
+        context = {
+            'total_visitantes': total_visitantes,
+            'total_acertos': total_acertos,
+            'total_erros': total_erros,
+            'respostas_acertadas': respostas_acertadas,
+            'cidades_acertos': cidades_acertos,
+            'notas_mais_dadas': notas_mais_dadas,
+            'idades_mais_visitadas': idades_mais_visitadas,
+            'mes_nome': mes_nome
+        }
 
-    if request.GET.get('export') == 'excel':
-        response = exportar_para_excel(context)
-        messages.success(request, 'Relatório exportado com sucesso')
-        return response
-    else:
-        return render(request, 'relatorio_completo.html', context)
-
+        if request.GET.get('export') == 'excel':
+            response = exportar_para_excel(context)
+            messages.success(request, 'Relatório exportado com sucesso')
+            return response
+        else:
+            return render(request, 'relatorio_completo.html', context)
+        
 
 def exportar_para_excel(context):
     workbook = xlsxwriter.Workbook('relatorio_promar.xlsx')
@@ -161,8 +167,11 @@ def exportar_para_excel(context):
     for col, header in enumerate(headers):
         worksheet.write(0, col, header, bold)
 
-    # Escrever dados
+    # Escrever dados usando o contexto recebido
     row = 1
+    worksheet.write(row, 0, "Mês")
+    worksheet.write(row, 1, context['mes_nome'])
+    row +=1    
     worksheet.write(row, 0, 'Total de Visitantes')
     worksheet.write(row, 1, context['total_visitantes'])
     row += 1
@@ -224,3 +233,4 @@ def exportar_para_excel(context):
         response['Content-Disposition'] = 'attachment; filename=relatorio_promar.xlsx'
 
     return response
+
