@@ -171,38 +171,15 @@
             <li>Cadastrar Respostas <i class="fa-solid fa-pen-to-square"></i></li>
             <li>Relatório Geral <i class="fa-solid fa-chart-column"></i></li>
             <a id="excel" class="excel-button " href="?export=excel">
-                Exportar para Excel <i class="fa-solid fa-file-excel"></i>
+                Exportar para Excel - {% if mes %} {% include "if_mes.html" %} {% else %} Total {% endif %} <i class="fa-solid fa-file-excel"></i>
             </a>
         </ul>
     </nav>
     <div class='titulo_relatorio'>
         <h1>Relatório Completo - ProMar Quiz</h1>
         <h2><i class="fa-regular fa-calendar"></i> 
-        {% if mes_nome == 'January' %}
-            Mês de Janeiro
-            {% elif mes_nome == 'February' %}
-                Mês de Fevereiro
-            {% elif mes_nome == 'March' %}
-                Mês de Março
-            {% elif mes_nome == 'April' %}
-                Mês de Abril
-            {% elif mes_nome == 'May' %}
-                Mês de Maio
-            {% elif mes_nome == 'June' %}
-                Mês de Junho
-            {% elif mes_nome == 'July' %}
-                Mês de Julho
-            {% elif mes_nome == 'August' %}
-                Mês de Agosto
-            {% elif mes_nome == 'September' %}
-                Mês de Setembro
-            {% elif mes_nome == 'October' %}
-                Mês de Outubro
-            {% elif mes_nome == 'November' %}
-                Mês de Novembro
-            {% elif mes_nome == 'December' %}
-                Mês de Dezembro
-        {% endif %}</h2>
+            {% include "if_mes.html" %}
+        </h2>
     </div>
 
     <hr>
@@ -303,8 +280,10 @@
     <br>
     <p>
 
-        <a id="excel" class="excel-button " href="?export=excel">
-            Exportar para Excel <i class="fa-solid fa-file-excel"></i>
+        <a id="excel" class="excel-button " href="?export=excel&mes={{mes}}">
+            Exportar para Excel - {% if mes %} {% include "if_mes.html" %} {% else %} Total {% endif %} 
+                      
+            <i class="fa-solid fa-file-excel"></i>
         </a>
     </p>
 </div>
