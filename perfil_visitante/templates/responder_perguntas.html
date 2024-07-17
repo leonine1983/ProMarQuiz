@@ -8,15 +8,16 @@
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                   <div class="home-content">
-                    <img src="{% static 'peixe.gif' %}" alt="" style="position: absolute; height: 100%;z-index: 0; border-top-left-radius: 1rem;border-bottom-left-radius: 1rem; margin-left:-6rem">
-                    <div class="home-heading">                        
+                    <div class="home-heading" style='position:absolute; z-index:10; margin-top:-5%'>                        
                       <h1><em>Mares</em> Quiz</h1>
                     </div>
-                    <div class="row">
+                    <!--<img src="{% static 'peixe.gif' %}" alt="" style="position: absolute; height: 100%;z-index: 0; border-top-left-radius: 1rem;border-bottom-left-radius: 1rem; margin-left:-6rem">-->
+                    <video autoplay muted loop src="{% static 'video/155563-810397226_tiny.mp4' %}" alt="" style="position: absolute; height: 100%;z-index: 0; border-top-left-radius: 1rem;border-bottom-left-radius: 1rem; margin-left:-6rem"></video>
+                    
+                    <div class="row" >
                       <div class="col-md-12">
-                        <div class="home-box-content">
-                          <div class="left-text">
-                            
+                        <div class="home-box-content" style='margin-top:35%!important'>
+                          <div class="left-text">                            
                             <h4><strong>{{ perfil_visitante.nome_completo }}</strong>, Mostre o quanto você aprendeu sobre o <em>PROMAR!</em>!</h4>
                             <p>Veja se você consegue acertar todas as perguntas e mostre que você é um verdadeiro expert no assunto.</p>
                             <p> Aventure-se neste desafio e compartilhe seus resultados com seus amigos!</p>    
