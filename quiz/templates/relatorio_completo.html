@@ -1,178 +1,15 @@
 {% extends "perfil_e_quiz/index.html" %}
 {% load static %}
 {% block content %} 
-<script src="https://unpkg.com/tableexport@5.2.0/dist/js/tableexport.min.js"></script>
 <style>
-   #dashboard {
-            width: 80%;
-            background-color: #fff;
-            margin: auto;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);        
-        }
-        #dashboard h1, #dashboard h2 {
-            color: #333;
-            text-align: left;            
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        #dashboard h1{
-            font-size: 2rem;            
-            margin-top: 5rem;
-        }
-        #dashboard h2{
-            font-size: 1.5rem;
-            margin-top: 2.5rem;
-            display: block;
-        }
-        #dashboard table {
-            width: 100%;
-            margin-bottom: 20px;
-            border-collapse: collapse;
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        #dashboard th, #dashboard td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        #dashboard th {
-            background-color: #f0f0f0;
-        }
-        #dashboard tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        #dashboard a {
-            color: #0078d4;
-            text-decoration: none;
-        }
-        #dashboard a:hover {
-            text-decoration: underline;
-        }
-        #dashboard p {
-            text-align: center;
-        }
-
-
-          /* Estilo para o botão EXCEL*/
-  .excel-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-decoration: none;
-    color: #ffffff; /* Cor do texto */
-    background-color: #8ae78d; /* Cor de fundo */
-    border-radius: 5px; /* Borda arredondada */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
-    transition: background-color 0.3s, color 0.3s; /* Transição suave */
-}
-.excel-button a:hover {
-    text-decoration: none;
-}
-
-.excel-button:hover {
-    background-color: #388e3c; /* Cor de fundo ao passar o mouse */
-}
-
-.excel-button i {
-    margin-left: 5px; /* Espaçamento entre o texto e o ícone */    
-    color: #144e05; /* Cor do texto */
-    font-size: 2rem;
-}
-
-/* Estilo específico para o ícone */
-.excel-button .fa-regular {
-    color: #ffffff; /* Cor do ícone */
-    margin-left: 5px; /* Espaçamento entre o texto e o ícone */
-}
-
-.nav-win11 {
-        background-color: #cac8c9; /* cor de fundo do Windows 11 */
-        border-bottom: 1px solid #cfcfcf; /* linha inferior */
-        border-bottom-right-radius:2rem ;
-        border-bottom-left-radius: 2rem;
-        border-bottom-color: #52074b;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* fonte do Windows */
-        padding: 10px 0;
-        margin: -2rem;
-        position: fixed;
-        width: 80%;
-    }
-
-    .nav-win11 ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        text-align: center; /* centralizar itens */
-    }
-
-    .nav-win11 li {
-        display: inline-block;
-        margin: 0 10px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: #ffffff; /* fundo dos itens */
-        transition: background-color 0.3s ease;
-    }
-
-    .nav-win11 li:hover {
-        background-color: #e0e0e0; /* cor de fundo ao passar o mouse */
-    }
-
-    @media screen and (max-width: 600px) {
-        .nav-win11 ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-win11 li {
-            margin: 5px;
-            padding: 8px 15px;
-        }
-    }
-
-
-    .titulo_relatorio {
-        background-color: #f6f6f6;
-        border-radius: 6px;
-        padding: 20px;
-        text-align: center;
-        margin: 0 auto;
-        font-family: 'Ubuntu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        box-sizing: border-box;
-        border: 1px solid #dddddd;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .titulo_relatorio h1 {
-        font-size: 28px;
-        font-weight: bold;
-        color: #333333;
-        margin-bottom: 1rem !important;
-    }
-
-    .titulo_relatorio h2 {
-        font-size: 20px;
-        color: #555555;
-        margin: 0!important;
-    }
+   #dashboard{width:80%;background-color:#fff;margin:auto;padding:20px;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1)}#dashboard h1,#dashboard h2{color:#333;text-align:left;margin-bottom:20px;text-transform:uppercase}#dashboard h1{font-size:2rem;margin-top:5rem}#dashboard h2{font-size:1.5rem;margin-top:2.5rem;display:block}#dashboard table{width:100%;margin-bottom:20px;border-collapse:collapse;border-radius:8px;overflow:hidden;background-color:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.1)}#dashboard th,#dashboard td{padding:12px;text-align:left;border-bottom:1px solid #ddd}#dashboard th{background-color:#f0f0f0}#dashboard tr:nth-child(even){background-color:#f9f9f9}#dashboard a{color:#0078d4;text-decoration:none}#dashboard a:hover{text-decoration:underline}#dashboard p{text-align:center}.excel-button{display:inline-block;padding:10px 20px;font-size:16px;text-decoration:none;color:#fff;background-color:#8ae78d;border-radius:5px;box-shadow:0 2px 4px rgba(0,0,0,0.1);transition:background-color 0.3s,color 0.3s}.excel-button:hover{background-color:#388e3c}.excel-button i{margin-left:5px;color:#144e05;font-size:2rem}.excel-button .fa-regular{color:#fff;margin-left:5px}.nav-win11{background-color:#cac8c9;border-bottom:1px solid #cfcfcf;border-bottom-right-radius:2rem;border-bottom-left-radius:2rem;border-bottom-color:#52074b;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;padding:10px 0;margin:-2rem;position:fixed;width:80%}.nav-win11 ul{list-style-type:none;margin:0;padding:0;text-align:center}.nav-win11 li{display:inline-block;margin:0 10px;padding:10px 20px;border-radius:5px;background-color:#fff;transition:background-color 0.3s ease}.nav-win11 li:hover{background-color:#e0e0e0}@media screen and (max-width:600px){.nav-win11 ul{display:flex;flex-wrap:wrap;justify-content:center}.nav-win11 li{margin:5px;padding:8px 15px}}.titulo_relatorio{background-color:#f6f6f6;border-radius:6px;padding:20px;text-align:center;margin:0 auto;font-family:'Ubuntu','Segoe UI',Tahoma,Geneva,Verdana,sans-serif;box-sizing:border-box;border:1px solid #ddd;box-shadow:0 2px 4px rgba(0,0,0,0.1)}.titulo_relatorio h1{font-size:28px;font-weight:bold;color:#333;margin-bottom:1rem!important}.titulo_relatorio h2{font-size:20px;color:#555;margin:0!important}
 </style>
-
-
 <div id="dashboard">
     <nav class="nav-win11">
         <ul>
             <li><a href="{% url "criar_pergunta" %}">Cadastrar Perguntas <i class="fa-solid fa-pen-to-square"></i></a></li>
             <li>Cadastrar Respostas <i class="fa-solid fa-pen-to-square"></i></li>
             <li><a href="{% url 'relatorio' %}"> Relatório Geral <i class="fa-solid fa-chart-column"></i></a></li>
-            <a id="excel" class="excel-button " href="?export=excel">
-                Exportar para Excel - {% if mes %} {% include "if_mes.html" %} {% else %} Total {% endif %} <i class="fa-solid fa-file-excel"></i>
-            </a>
         </ul>
     </nav>
     <div class='titulo_relatorio'>
@@ -181,7 +18,6 @@
             {% include "if_mes.html" %}
         </h2>
     </div>
-
     <hr>
     <form method="GET" class='form-win11' style='display:block'>
         <label for="id_mes">Escolha um mês:</label>
@@ -201,8 +37,7 @@
             <option value="12">Dezembro</option>
         </select>
         <button type="submit" class='m-1'>Filtrar</button>
-    </form>
-    
+    </form>    
     <div style="margin-left: 10%;">
         <h2>Geral</h2>
         <table>
@@ -219,7 +54,6 @@
                 <td>{{ total_erros }}</td>
             </tr>
         </table>
-
         <h2>Respostas Mais Acertadas</h2>
         <table>
             <tr>
@@ -233,7 +67,6 @@
             </tr>
             {% endfor %}
         </table>
-
         <h2>Cidades com Melhor Desempenho</h2>
         <table>
             <tr>
@@ -247,7 +80,6 @@
             </tr>
             {% endfor %}
         </table>
-
         <h2>Notas Mais Dadas</h2>
         <table>
             <tr>
@@ -261,7 +93,6 @@
             </tr>
             {% endfor %}
         </table>
-
         <h2>Idades Mais Visitadas</h2>
         <table>
             <tr>
@@ -276,18 +107,13 @@
             {% endfor %}
         </table>
     </div>
-
     <br>
     <p>
-
         <a id="excel" class="excel-button " href="?export=excel&mes={{mes}}">
-            Exportar para Excel - {% if mes %} {% include "if_mes.html" %} {% else %} Total {% endif %} 
-                      
+            Exportar para Excel - {% if mes %} {% include "if_mes.html" %} {% else %} Total {% endif %}   
             <i class="fa-solid fa-file-excel"></i>
         </a>
     </p>
-</div>
-    
-
+</div> 
 {% endblock %}
     
