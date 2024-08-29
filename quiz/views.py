@@ -1,7 +1,5 @@
 from django.db.models import Count, Q
 from .models import PerfilVisitante, VisitantePerguntaResposta
-from django.db.models.signals import post_migrate
-from django.dispatch import receiver
 from perfil_visitante.models import PerfilVisitante
 from django.contrib import messages
 
@@ -9,7 +7,13 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Pergunta, Resposta
 from .forms import PerguntaForm, RespostaForm
-import xlsxwriter
+import calendar
+import datetime
+from django.db.models import Count
+import openpyxl
+from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
+from io import BytesIO
+
 
 
 
@@ -96,15 +100,6 @@ def deletar_resposta(request, resposta_id):
     return redirect('criar_resposta', pergunta_id=pergunta_id)
 
 
-import calendar
-import datetime
-from django.http import HttpResponse
-import xlsxwriter
-from django.db.models import Count, Q
-import calendar
-import datetime
-
-from django.db.models import Count
 def relatorio_completo(request):
     if request.method == 'GET':
         mes_str = request.GET.get('mes')
@@ -120,7 +115,7 @@ def relatorio_completo(request):
         else:
             resposta_visitante = VisitantePerguntaResposta.objects.all()
             perfil_visitante = PerfilVisitante.objects.all()
-            mes_nome = calendar.month_name[datetime.datetime.now().month]
+            mes_nome = "Todos os meses"
 
         # Quantidade de visitantes
         total_visitantes = perfil_visitante.count()
@@ -171,11 +166,6 @@ def relatorio_completo(request):
             return render(request, 'relatorio_completo.html', context)
 
 
-import openpyxl
-from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
-from io import BytesIO
-from django.http import HttpResponse
-
 def exportar_para_excel(context):
     # Criação de uma nova planilha
     wb = openpyxl.Workbook()
@@ -212,6 +202,8 @@ def exportar_para_excel(context):
         ws.append([])  # Linha em branco após os dados
 
     # Adicionando Total Visitantes, Total Acertos, Total Erros
+    #add_section('Relatório Mensal - QUIZ MARES')
+    
     meses = {
     "January": 'Janeiro',
     "February": 'Fevereiro',
@@ -227,7 +219,7 @@ def exportar_para_excel(context):
     "December": 'Dezembro'
     }
     mes_nome = context['mes_nome']
-    mes = meses.get(mes_nome, "Mês inválido")
+    mes = meses.get(mes_nome, "Soma de todos os meses")
     add_section('Resumo Geral', [
         ['Periodo do ano', mes],
         ['Total Visitantes', context['total_visitantes']],
