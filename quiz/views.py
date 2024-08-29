@@ -104,17 +104,22 @@ from django.db.models import Count, Q
 import calendar
 import datetime
 
-
+from django.db.models import Count
 def relatorio_completo(request):
     if request.method == 'GET':
-        mes = request.GET.get('mes')
+        mes_str = request.GET.get('mes')
+        try:
+            mes = int(mes_str) if mes_str and mes_str.isdigit() else None
+        except ValueError:
+            mes = None
+        
         if mes:
-            resposta_visitante = VisitantePerguntaResposta.objects.filter(criado_em__month=mes)     
-            perfil_visitante = PerfilVisitante.objects.filter(criado_em__month=mes)  
-            mes_nome = calendar.month_name[int(mes)]
+            resposta_visitante = VisitantePerguntaResposta.objects.filter(criado_em__month=mes)
+            perfil_visitante = PerfilVisitante.objects.filter(criado_em__month=mes)
+            mes_nome = calendar.month_name[mes]
         else:
             resposta_visitante = VisitantePerguntaResposta.objects.all()
-            perfil_visitante = PerfilVisitante.objects.all()  
+            perfil_visitante = PerfilVisitante.objects.all()
             mes_nome = calendar.month_name[datetime.datetime.now().month]
 
         # Quantidade de visitantes
@@ -137,6 +142,14 @@ def relatorio_completo(request):
         # Idades mais visitadas
         idades_mais_visitadas = perfil_visitante.values('idade').annotate(total=Count('id')).order_by('-total')
 
+        # Quantidade de estudantes por turma
+        quant_estudante_turma = perfil_visitante.values('turma').annotate(total=Count('id')).order_by('turma')
+
+        # Mapear os valores da turma para seus nomes completos
+        turma_mapping = dict(PerfilVisitante.TURMA_CHOICES)
+        for turma in quant_estudante_turma:
+            turma['turma'] = turma_mapping.get(turma['turma'], turma['turma'])
+
         context = {
             'total_visitantes': total_visitantes,
             'total_acertos': total_acertos,
@@ -145,199 +158,132 @@ def relatorio_completo(request):
             'cidades_acertos': cidades_acertos,
             'notas_mais_dadas': notas_mais_dadas,
             'idades_mais_visitadas': idades_mais_visitadas,
+            'quant_estudante_turma': quant_estudante_turma,
             'mes_nome': mes_nome,
             'mes': mes
         }
 
-        if request.GET.get('export') == 'excel':               
-            messages.success(request, 'Relatório exportado com sucesso')            
-            mes = request.GET.get('mes')
-            print(f'esse mes e o meu hahha {mes}')
-            if mes:
-                resposta_visitante = VisitantePerguntaResposta.objects.filter(criado_em__month=mes)     
-                perfil_visitante = PerfilVisitante.objects.filter(criado_em__month=mes)  
-                mes_nome = calendar.month_name[int(mes)]
-            else:
-                resposta_visitante = VisitantePerguntaResposta.objects.all()
-                perfil_visitante = PerfilVisitante.objects.all()  
-                mes_nome = calendar.month_name[datetime.datetime.now().month]
-
-            if mes_nome == 'January':
-                mes_nome = 'Janeiro'
-            elif mes_nome == 'February':
-                mes_nome = 'Fevereiro'
-            elif mes_nome == 'March':
-                mes_nome = 'Março'
-            elif mes_nome == 'April':
-                mes_nome = 'Abril'
-            elif mes_nome == 'May':
-                mes_nome = 'Maio'
-            elif mes_nome == 'June':
-                mes_nome='Junho'
-            elif mes_nome == 'July':
-                mes_nome='Julho'
-            elif mes_nome == 'August':
-                mes_nome='Agosto'
-            elif mes_nome == 'September':
-                mes_nome='Setembro'
-            elif mes_nome == 'October':
-                mes_nome='Outubro'
-            elif mes_nome == 'November':
-                mes_nome='Novembro'
-            else:
-                mes_nome='Dezembro'
-
-
-            # Quantidade de visitantes
-            total_visitantes = perfil_visitante.count()
-
-            # Quantidade de respostas corretas e incorretas
-            total_acertos = resposta_visitante.filter(resposta__correta=True).count()
-            total_erros = resposta_visitante.filter(resposta__correta=False).count()
-
-            # Respostas mais acertadas
-            respostas_acertadas = resposta_visitante.values('resposta__texto_resposta').annotate(total=Count('id')).order_by('-total')
-
-            # Cidades que mais acertaram
-            cidades_acertos = perfil_visitante.values('municipio_escola').annotate(total_acertos=Count(
-                'Visitante_related', filter=Q(Visitante_related__resposta__correta=True))).order_by('-total_acertos')
-
-            # Notas mais dadas
-            notas_mais_dadas = perfil_visitante.values('nota_visita').annotate(total=Count('id')).order_by('-total')
-
-            # Idades mais visitadas
-            idades_mais_visitadas = perfil_visitante.values('idade').annotate(total=Count('id')).order_by('-total')
-
-            context = {
-                'total_visitantes': total_visitantes,
-                'total_acertos': total_acertos,
-                'total_erros': total_erros,
-                'respostas_acertadas': respostas_acertadas,
-                'cidades_acertos': cidades_acertos,
-                'notas_mais_dadas': notas_mais_dadas,
-                'idades_mais_visitadas': idades_mais_visitadas,
-                'mes_nome': mes_nome
-            }
-
-            response = exportar_para_excel(context)            
-            return response            
-        else:                    
+        if request.GET.get('export') == 'excel':
+            messages.success(request, 'Relatório exportado com sucesso')
+            response = exportar_para_excel(context)
+            return response
+        else:
             return render(request, 'relatorio_completo.html', context)
-        
 
-import xlsxwriter
+
+import openpyxl
+from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
+from io import BytesIO
+from django.http import HttpResponse
 
 def exportar_para_excel(context):
-    # Inicializa o workbook e worksheet
-    workbook = xlsxwriter.Workbook('relatorio_promar.xlsx')
-    worksheet = workbook.add_worksheet()
+    # Criação de uma nova planilha
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Relatório Completo"
 
-    # Definindo formatos
-    bold = workbook.add_format({'bold': True})
-    normal = workbook.add_format()
+    # Estilos
+    header_font = Font(bold=True, color="FFFFFF")
+    header_fill = PatternFill(start_color="4F81BD", end_color="4F81BD", fill_type="solid")
+    data_fill = PatternFill(start_color="D9EAD3", end_color="D9EAD3", fill_type="solid")
+    border = Border(left=Side(border_style="thin"), right=Side(border_style="thin"),
+                    top=Side(border_style="thin"), bottom=Side(border_style="thin"))
+    alignment = Alignment(horizontal="center", vertical="center")
+    
+    # Função para aplicar estilos a uma linha
+    def style_row(row):
+        for cell in row:
+            cell.border = border
+            cell.alignment = alignment
 
-    # Ajustes de estilo para se assemelhar ao Windows 11/12
-    worksheet.set_default_row(20)  # Altura padrão das linhas
-    worksheet.set_column('A:B', 20)  # Largura padrão das colunas
+    # Função para adicionar e formatar cabeçalhos e dados
+    def add_section(title, rows):
+        headers = [title, 'Valor']  # Cabeçalhos para seções de dados
+        ws.append(headers)
+        style_row(ws[ws.max_row])
+        for cell in ws[ws.max_row]:
+            cell.font = header_font
+            cell.fill = header_fill
+        
+        for row in rows:
+            ws.append(row)
+            style_row(ws[ws.max_row])
+        
+        ws.append([])  # Linha em branco após os dados
 
-    # Formato para cabeçalhos
-    header_format = workbook.add_format({
-        'bold': True,
-        'align': 'center',
-        'valign': 'vcenter',
-        'fg_color': '#F2F2F2',  # Cor de fundo cinza claro
-        'border': 1  # Borda fina ao redor
-    })
+    # Adicionando Total Visitantes, Total Acertos, Total Erros
+    meses = {
+    "January": 'Janeiro',
+    "February": 'Fevereiro',
+    "March": 'Março',
+    "April": 'Abril',
+    "May": 'Maio',
+    "June": 'Junho',
+    "July": 'Julho',
+    "August": 'Agosto',
+    "September": 'Setembro',
+    "October": 'Outubro',
+    "November": 'Novembro',
+    "December": 'Dezembro'
+    }
+    mes_nome = context['mes_nome']
+    mes = meses.get(mes_nome, "Mês inválido")
+    add_section('Resumo Geral', [
+        ['Periodo do ano', mes],
+        ['Total Visitantes', context['total_visitantes']],
+        ['Total Acertos', context['total_acertos']],
+        ['Total Erros', context['total_erros']]
+    ])
 
-    # Escrever cabeçalhos
-    headers = ['Categoria', 'Valor']
-    for col, header in enumerate(headers):
-        worksheet.write(0, col, header, header_format)
+    # Adicionando Respostas Acertadas
+    add_section('Respostas Acertadas', [
+        [resposta['resposta__texto_resposta'], resposta['total']]
+        for resposta in context['respostas_acertadas']
+    ])
 
-    # Escrever dados usando o contexto recebido
-    row = 1
-    col=2
-    data_format = workbook.add_format({
-        'align': 'left',
-        'valign': 'vcenter',
-        'border': 1  # Borda fina ao redor
-    })
+    # Adicionando Cidades Acertos
+    add_section('Cidades Acertos', [
+        [cidade['municipio_escola'], cidade['total_acertos']]
+        for cidade in context['cidades_acertos']
+    ])
 
-    # Dados individuais
-    worksheet.write(row, 0, "Mês", data_format)
-    worksheet.write(row, 1, context['mes_nome'], data_format)
-    row += 1    
-    worksheet.write(row, 0, 'Total de Visitantes', data_format)
-    worksheet.write(row, 1, context['total_visitantes'], data_format)
-    row += 1
-    worksheet.write(row, 0, 'Total de Acertos', data_format)
-    worksheet.write(row, 1, context['total_acertos'], data_format)
-    row += 1
-    worksheet.write(row, 0, 'Total de Erros', data_format)
-    worksheet.write(row, 1, context['total_erros'], data_format)
-    row += 2
+    # Adicionando Notas Mais Dadas
+    add_section('Notas Mais Dadas', [
+        [nota['nota_visita'], nota['total']]
+        for nota in context['notas_mais_dadas']
+    ])
 
-    # Títulos secundários
-    secondary_title_format = workbook.add_format({
-        'bold': True,
-        'align': 'left',
-        'valign': 'vcenter',
-        'fg_color': '#D9EAD3',  # Cor de fundo verde claro
-        'border': 1  # Borda fina ao redor
-    })
+    # Adicionando Idades Mais Visitadas
+    add_section('Idades Mais Visitadas', [
+        [idade['idade'], idade['total']]
+        for idade in context['idades_mais_visitadas']
+    ])
 
-    # Respostas mais acertadas
-    worksheet.write(row, 0, 'Respostas Mais Acertadas', secondary_title_format)
-    row += 1
-    worksheet.write(row, 0, 'Resposta', header_format)
-    worksheet.write(row, 1, 'Total', header_format)
-    row += 1
-    for resposta in context['respostas_acertadas']:
-        worksheet.write(row, 0, resposta['resposta__texto_resposta'], data_format)
-        worksheet.write(row, 1, resposta['total'], data_format)
-        row += 1
-    row += 1
+    # Adicionando Quantidade de Estudantes por Turma
+    add_section('Quantidade de Estudantes por Turma', [
+        [turma['turma'], turma['total']]
+        for turma in context['quant_estudante_turma']
+    ])
 
-    # Cidades com melhor desempenho
-    worksheet.write(row, 0, 'Cidades com Melhor Desempenho', secondary_title_format)
-    row += 1
-    worksheet.write(row, 0, 'Cidade', header_format)
-    worksheet.write(row, 1, 'Total de Acertos', header_format)
-    row += 1
-    for cidade in context['cidades_acertos']:
-        worksheet.write(row, 0, cidade['municipio_escola'], data_format)
-        worksheet.write(row, 1, cidade['total_acertos'], data_format)
-        row += 1
-    row += 1
+    # Ajustando largura das colunas
+    for col in ws.columns:
+        max_length = 0
+        column = col[0].column_letter  # Obter a letra da coluna
+        for cell in col:
+            try:
+                if len(str(cell.value)) > max_length:
+                    max_length = len(cell.value)
+            except:
+                pass
+        adjusted_width = (max_length + 2)
+        ws.column_dimensions[column].width = adjusted_width
 
-    # Notas mais dadas
-    worksheet.write(row, 0, 'Notas Mais Dadas', secondary_title_format)
-    row += 1
-    worksheet.write(row, 0, 'Nota', header_format)
-    worksheet.write(row, 1, 'Total', header_format)
-    row += 1
-    for nota in context['notas_mais_dadas']:
-        worksheet.write(row, 0, nota['nota_visita'], data_format)
-        worksheet.write(row, 1, nota['total'], data_format)
-        row += 1
-    row += 1
+    # Criando o buffer de memória e salvando a planilha nele
+    buffer = BytesIO()
+    wb.save(buffer)
+    buffer.seek(0)
 
-    # Idades mais visitadas
-    worksheet.write(row, 0, 'Idades Mais Visitadas', secondary_title_format)
-    row += 1
-    worksheet.write(row, 0, 'Idade', header_format)
-    worksheet.write(row, 1, 'Total', header_format)
-    row += 1
-    for idade in context['idades_mais_visitadas']:
-        worksheet.write(row, 0, idade['idade'], data_format)
-        worksheet.write(row, 1, idade['total'], data_format)
-        row += 1
-
-    workbook.close()
-
-    # Retornar o arquivo Excel como uma resposta HTTP para download
-    with open('relatorio_promar.xlsx', 'rb') as excel_file:
-        response = HttpResponse(excel_file.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-        response['Content-Disposition'] = 'attachment; filename=relatorio_promar.xlsx'
-
+    # Criando a resposta HTTP
+    response = HttpResponse(content=buffer, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename="relatorio_completo.xlsx"'
     return response

@@ -106,6 +106,19 @@
             </tr>
             {% endfor %}
         </table>
+        <h2>Estudante por turma</h2>
+        <table>
+            <tr>
+                <th>Turma</th>
+                <th>Total</th>
+            </tr>
+            {% for turma in quant_estudante_turma %}
+            <tr>
+                <td>{{ turma.turma }}</td>
+                <td>{{ turma.total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
     <br>
     <p>
@@ -116,4 +129,3 @@
     </p>
 </div> 
 {% endblock %}
-    
