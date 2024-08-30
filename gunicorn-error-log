@@ -38240,3 +38240,35 @@ esse mes e o meu hahha 8
 [2024-08-29 20:53:25 -0300] [41962] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
 Not Found: /admin_quiz/dashboard/img/contact-icon.png
  - - [29/Aug/2024:20:53:25 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+[2024-08-29 21:06:34 -0300] [41958] [DEBUG] GET /admin_quiz/dashboard/
+ - - [29/Aug/2024:21:06:35 -0300] "GET /admin_quiz/dashboard/?mes=8 HTTP/1.1" 200 18598 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:06:35 -0300] [41962] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
+Not Found: /admin_quiz/dashboard/img/contact-icon.png
+ - - [29/Aug/2024:21:06:35 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/?mes=8" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:14:33 -0300] [41957] [DEBUG] GET /admin_quiz/dashboard/
+ - - [29/Aug/2024:21:14:33 -0300] "GET /admin_quiz/dashboard/?mes=8 HTTP/1.1" 200 15443 "http://34.72.23.133/admin_quiz/dashboard/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:14:33 -0300] [41962] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
+Not Found: /admin_quiz/dashboard/img/contact-icon.png
+ - - [29/Aug/2024:21:14:33 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/?mes=8" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:14:48 -0300] [41962] [DEBUG] GET /admin_quiz/dashboard/
+ - - [29/Aug/2024:21:14:48 -0300] "GET /admin_quiz/dashboard/?mes=8 HTTP/1.1" 200 15443 "http://34.72.23.133/admin_quiz/dashboard/?mes=8" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:14:48 -0300] [41962] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
+Not Found: /admin_quiz/dashboard/img/contact-icon.png
+ - - [29/Aug/2024:21:14:48 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/?mes=8" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:15:03 -0300] [41961] [DEBUG] GET /admin_quiz/dashboard/
+ - - [29/Aug/2024:21:15:03 -0300] "GET /admin_quiz/dashboard/?mes=2 HTTP/1.1" 200 16855 "http://34.72.23.133/admin_quiz/dashboard/?mes=8" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:15:04 -0300] [41961] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
+Not Found: /admin_quiz/dashboard/img/contact-icon.png
+ - - [29/Aug/2024:21:15:04 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/?mes=2" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:15:12 -0300] [41958] [DEBUG] GET /
+ - - [29/Aug/2024:21:15:12 -0300] "GET / HTTP/1.1" 200 13522 "-" "-"
+[2024-08-29 21:15:12 -0300] [41959] [DEBUG] GET /admin_quiz/dashboard/
+ - - [29/Aug/2024:21:15:12 -0300] "GET /admin_quiz/dashboard/?mes=7 HTTP/1.1" 200 18352 "http://34.72.23.133/admin_quiz/dashboard/?mes=2" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:15:12 -0300] [41960] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
+Not Found: /admin_quiz/dashboard/img/contact-icon.png
+ - - [29/Aug/2024:21:15:12 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/?mes=7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:15:16 -0300] [41961] [DEBUG] GET /admin_quiz/dashboard/
+ - - [29/Aug/2024:21:15:16 -0300] "GET /admin_quiz/dashboard/?mes= HTTP/1.1" 200 18754 "http://34.72.23.133/admin_quiz/dashboard/?mes=7" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
+[2024-08-29 21:15:16 -0300] [41961] [DEBUG] GET /admin_quiz/dashboard/img/contact-icon.png
+Not Found: /admin_quiz/dashboard/img/contact-icon.png
+ - - [29/Aug/2024:21:15:16 -0300] "GET /admin_quiz/dashboard/img/contact-icon.png HTTP/1.1" 404 4549 "http://34.72.23.133/admin_quiz/dashboard/?mes=" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0"
