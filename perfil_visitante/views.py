@@ -71,7 +71,7 @@ def resultado_quiz(request, pk):
 
 
 def qr_code(request):
-    server_ip = '34.72.23.133'
+    server_ip = '35.223.184.4'
     
     # Cria o objeto QR Code
     qr = qrcode.QRCode(
