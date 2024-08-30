@@ -202,7 +202,6 @@ def exportar_para_excel(context):
         ws.append([])  # Linha em branco após os dados
 
     # Adicionando Total Visitantes, Total Acertos, Total Erros
-    #add_section('Relatório Mensal - QUIZ MARES')
     
     meses = {
     "January": 'Janeiro',
