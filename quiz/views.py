@@ -1,4 +1,5 @@
 from django.db.models import Count, Q
+import openpyxl.cell
 from .models import PerfilVisitante, VisitantePerguntaResposta
 from perfil_visitante.models import PerfilVisitante
 from django.contrib import messages
@@ -12,6 +13,7 @@ import datetime
 from django.db.models import Count
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
+from openpyxl.worksheet.page import PageMargins
 from io import BytesIO
 
 
@@ -173,12 +175,28 @@ def exportar_para_excel(context):
     ws.title = "Relatório Completo"
 
     # Estilos
+    title_font = Font(size=14, bold=True)    
     header_font = Font(bold=True, color="FFFFFF")
     header_fill = PatternFill(start_color="4F81BD", end_color="4F81BD", fill_type="solid")
     data_fill = PatternFill(start_color="D9EAD3", end_color="D9EAD3", fill_type="solid")
     border = Border(left=Side(border_style="thin"), right=Side(border_style="thin"),
                     top=Side(border_style="thin"), bottom=Side(border_style="thin"))
     alignment = Alignment(horizontal="center", vertical="center")
+
+    
+     # Configuração do papel
+    ws.page_setup.paperSize = ws.PAPERSIZE_A4  # Tamanho do papel A4
+    ws.page_setup.orientation = ws.ORIENTATION_PORTRAIT  # Orientação retrato
+
+    # Configuração das margens
+    ws.page_margins = PageMargins(
+        left=0.75,
+        right=1,
+        top=1.0,
+        bottom=1.0,
+        header=0.3,
+        footer=0.3
+    )
     
     # Função para aplicar estilos a uma linha
     def style_row(row):
@@ -218,13 +236,38 @@ def exportar_para_excel(context):
     "December": 'Dezembro'
     }
     mes_nome = context['mes_nome']
-    mes = meses.get(mes_nome, "Soma de todos os meses")
+    mes = meses.get(mes_nome, "(Soma de todos os meses)")
+
+    
+    #Adicionando título geral da planilha
+    titulo = f"Resumo de Todas as Visitas de Alunos:AA {mes}"
+    ws.merge_cells('A1:B1') # Mesclar as celulas da primeira linha
+    ws['A1'] = titulo
+    ws['A1'].font = title_font
+    ws['A1'].alignment = alignment
+
+    # Liha em branco após o titulo
+    ws.append([])
+    
+    #Adicionando título geral da planilha
+    titulo = f"Resumo de Todas as Visitas de Alunos: {mes}"
+    ws.merge_cells('A1:B1') # Mesclar as celulas da primeira linha
+    ws['A1'] = titulo
+    ws['A1'].font = title_font
+    ws['A1'].alignment = alignment
+
+    # Liha em branco após o titulo
+    ws.append([])
+
+
     add_section('Resumo Geral', [
         ['Periodo do ano', mes],
         ['Total Visitantes', context['total_visitantes']],
         ['Total Acertos', context['total_acertos']],
         ['Total Erros', context['total_erros']]
     ])
+
+     
 
     # Adicionando Respostas Acertadas
     add_section('Respostas Acertadas', [
@@ -256,18 +299,42 @@ def exportar_para_excel(context):
         for turma in context['quant_estudante_turma']
     ])
 
+    # Definindo a largura da segunda coluna 
+    ws.column_dimensions['B'].width =30
+
     # Ajustando largura das colunas
     for col in ws.columns:
         max_length = 0
-        column = col[0].column_letter  # Obter a letra da coluna
-        for cell in col:
-            try:
-                if len(str(cell.value)) > max_length:
-                    max_length = len(cell.value)
-            except:
-                pass
-        adjusted_width = (max_length + 2)
-        ws.column_dimensions[column].width = adjusted_width
+        column = col[0].column_letter if isinstance(col[0], openpyxl.cell.cell.Cell) else None
+        if column: # Apenas ajustar se a coluna não for celula mesclada
+            for cell in col:
+                try:
+                    if isinstance(cell, openpyxl.cell.cell.Cell) and  len(str(cell.value)) > max_length:
+                        max_length = len(cell.value)
+                except:
+                    pass
+            adjusted_width = (max_length + 2)
+            ws.column_dimensions[column].width = adjusted_width
+
+    ws.column_dimensions['A'].width =50
+
+    # Ajustar o alinhamento da coluna A para esquerda
+    for cell in ws['A']:
+        cell.alignment = Alignment(horizontal='left', vertical='center')
+
+    # Adicionando uma linha com texto informativo ao final
+    ws.append([])
+    informativo_text = "Este relatório é gerado automaticamente e contém informações detalhadas sobre as visitas de alunos durante o período mencionado"
+    ws.append([informativo_text])
+    ws.merge_cells(start_row=ws.max_row, start_column=1, end_row=ws.max_row, end_column=2)
+    ws[ws.max_row][0].alignment = Alignment(
+        horizontal="center",
+        vertical="center", 
+        wrap_text=True,
+        )
+    
+    # Area de impressão
+    #ws.print_area = 'A1:B20'
 
     # Criando o buffer de memória e salvando a planilha nele
     buffer = BytesIO()
